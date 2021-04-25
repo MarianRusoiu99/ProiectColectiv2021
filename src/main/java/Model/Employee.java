@@ -4,8 +4,8 @@ import java.io.Serializable;
  
 public class Employee implements Serializable {
     
-	
-	
+    
+    
     private static final long serialVersionUID = 1L;
     
     private String lastName;
@@ -17,6 +17,25 @@ public class Employee implements Serializable {
     private String company;     // sau Int
     private String password;
     
+    private String job;
+    private String team;
+    
+    public String getJob() {
+        return job;
+    }
+ 
+    public void setJob(String job) {
+        this.job = job;
+    }
+ 
+    public String getTeam() {
+        return team;
+    }
+ 
+    public void setTeam(String team) {
+        this.team = team;
+    }
+ 
     public String getLastName() {
         return lastName;
     }

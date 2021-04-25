@@ -6,27 +6,29 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
  
-import Model.Employee;
+import Model.Task;
  
-public class RegisterDao {
+public class AddTaskDao {
  
-    public int registerEmployee(Employee employee) throws ClassNotFoundException {
+    public int addTask (Task task) throws ClassNotFoundException {
         
-        String INSERT_COMPANY_SQL = "INSERT INTO company" +
-                "  (name) VALUES " + " (?);";
+        String INSERT_SKILL_SQL = "INSERT INTO skill" +
+                "  (name, company_id) VALUES " 
+                + " (?, ?);";
      
         String SELECT_QUERY = "SELECT id FROM company WHERE name = ?";
         
-        String INSERT_USERS_SQL = "INSERT INTO employee" +
-                "  (last_name, first_name, birth_date, sex, phone, email, company_id, user_type, password) VALUES " +
-                " (?, ?, ?, ?, ?, ?, ?, ?, md(?));";
+        String INSERT_USERS_SQL = "INSERT INTO task" +
+            "  (name, description, deadline, type, repetitive ) VALUES " +
+            " (?, ?, ?, ?, ?);";
  
         int result = 0;
  
-        int companie = 0;
+//        int companie = 0;
+        String skill = null;
         
         Class.forName("com.mysql.jdbc.Driver");
-        	
+        
         
         Connection connection = null;
         try {
@@ -40,13 +42,17 @@ public class RegisterDao {
         
         try {
                 // Step 2:Create a statement using connection object
-                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_COMPANY_SQL);
+                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SKILL_SQL);
                 //preparedStatement.setInt(1, 1);
-                preparedStatement.setString(1, employee.getCompany());
+                preparedStatement.setString(1, skill);
+        //        preparedStatement.setString(2, task.getCompany());
      
                 System.out.println(preparedStatement);
                 // Step 3: Execute the query or update query
-                result = preparedStatement.executeUpdate();
+                ResultSet result1 = preparedStatement.executeQuery();
+                if (result1.next()) {
+                    skill = result1.getString(1);
+                }
            
      
             } catch (SQLException e) {
@@ -59,13 +65,13 @@ public class RegisterDao {
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_QUERY);
             //preparedStatement2.setInt(1, 1);
-            preparedStatement2.setString(1, employee.getCompany());
+      //      preparedStatement2.setString(1, task.getCompany());
  
             System.out.println(preparedStatement2);
             // Step 3: Execute the query or update query
             ResultSet result1 = preparedStatement2.executeQuery();
             if (result1.next()) {
-                companie = result1.getInt(1);
+    //            companie = result1.getInt(1);
             }
        
  
@@ -81,15 +87,12 @@ public class RegisterDao {
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);
             //preparedStatement.setInt(1, 1);
-            preparedStatement.setString(1, employee.getLastName());
-            preparedStatement.setString(2, employee.getFirstName());
-            preparedStatement.setString(3, employee.getBirthDate());
-            preparedStatement.setString(4, employee.getSex());
-            preparedStatement.setString(5, employee.getPhone());
-            preparedStatement.setString(6, employee.getEmail());
-            preparedStatement.setInt(7, companie);
-            preparedStatement.setString(8, "admin");
-            preparedStatement.setString(9, employee.getPassword());
+            preparedStatement.setString(1, task.getTask_name());
+            preparedStatement.setString(2, task.getTask_description());
+            preparedStatement.setString(3, task.getTask_req());
+            preparedStatement.setString(4, task.getTask_type());
+            preparedStatement.setString(5, task.getTask_repetition());
+            
  
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query

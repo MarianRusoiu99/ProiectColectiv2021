@@ -8,25 +8,27 @@ import java.sql.SQLException;
  
 import Model.Employee;
  
-public class RegisterDao {
+public class AddEmployeeDao {
  
-    public int registerEmployee(Employee employee) throws ClassNotFoundException {
+    public int addEmployee (Employee employee) throws ClassNotFoundException {
         
-        String INSERT_COMPANY_SQL = "INSERT INTO company" +
-                "  (name) VALUES " + " (?);";
+        String INSERT_SKILL_SQL = "INSERT INTO skill" +
+                "  (name, company_id) VALUES " 
+                + " (?, ?);";
      
         String SELECT_QUERY = "SELECT id FROM company WHERE name = ?";
         
         String INSERT_USERS_SQL = "INSERT INTO employee" +
-                "  (last_name, first_name, birth_date, sex, phone, email, company_id, user_type, password) VALUES " +
-                " (?, ?, ?, ?, ?, ?, ?, ?, md(?));";
+            "  (last_name, first_name, birth_date, sex, phone, email, company_id, job, team_id, user_type, password) VALUES " +
+            " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, md5(?));";
  
         int result = 0;
  
         int companie = 0;
+        String skill = null;
         
         Class.forName("com.mysql.jdbc.Driver");
-        	
+        
         
         Connection connection = null;
         try {
@@ -40,13 +42,17 @@ public class RegisterDao {
         
         try {
                 // Step 2:Create a statement using connection object
-                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_COMPANY_SQL);
+                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SKILL_SQL);
                 //preparedStatement.setInt(1, 1);
-                preparedStatement.setString(1, employee.getCompany());
+                preparedStatement.setString(1, skill);
+                preparedStatement.setString(2, employee.getCompany());
      
                 System.out.println(preparedStatement);
                 // Step 3: Execute the query or update query
-                result = preparedStatement.executeUpdate();
+                ResultSet result1 = preparedStatement.executeQuery();
+                if (result1.next()) {
+                    skill = result1.getString(1);
+                }
            
      
             } catch (SQLException e) {
@@ -88,8 +94,10 @@ public class RegisterDao {
             preparedStatement.setString(5, employee.getPhone());
             preparedStatement.setString(6, employee.getEmail());
             preparedStatement.setInt(7, companie);
-            preparedStatement.setString(8, "admin");
-            preparedStatement.setString(9, employee.getPassword());
+            preparedStatement.setString(8, employee.getJob());
+            preparedStatement.setString(9, employee.getTeam());
+            preparedStatement.setString(10, "admin");
+            preparedStatement.setString(11, employee.getPassword());
  
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
