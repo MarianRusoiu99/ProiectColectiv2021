@@ -9,7 +9,7 @@ public class Task implements Serializable {
     private static final long serialVersionUID = 1L;
     
     
-    private String task_name;
+   // private String task_name;
     private String task_description;
     private String task_req;   
     private String task_deadline;
