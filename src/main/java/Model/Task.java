@@ -11,7 +11,7 @@ public class Task implements Serializable {
     
    // private String task_name;
     private String task_description;
-    private String task_req;   
+  //  private String task_req;   
     private String task_deadline;
     private String task_type;
     private String task_repetition ;
