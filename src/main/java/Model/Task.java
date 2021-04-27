@@ -17,12 +17,12 @@ public class Task implements Serializable {
     private String task_repetition ;
     private String task_sla;
     
-    public String getTask_name() {
-		return task_name;
-	}
-	public void setTask_name(String task_name) {
-		this.task_name = task_name;
-	}
+  //  public String getTask_name() {
+	//	return task_name;
+	//}
+	//public void setTask_name(String task_name) {
+	//	this.task_name = task_name;
+	//}
 	public String getTask_description() {
 		return task_description;
 	}
