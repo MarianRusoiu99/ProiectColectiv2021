@@ -19,7 +19,7 @@ public class RegisterDao {
         
         String INSERT_USERS_SQL = "INSERT INTO employee" +
                 "  (last_name, first_name, birth_date, sex, phone, email, company_id, user_type, password) VALUES " +
-                " (?, ?, ?, ?, ?, ?, ?, ?, md(?));";
+                " (?, ?, ?, ?, ?, ?, ?, ?, ? ) ;";
  
         int result = 0;
  

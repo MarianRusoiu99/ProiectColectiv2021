@@ -20,7 +20,7 @@ public class AddEmployeeDao {
         
         String INSERT_USERS_SQL = "INSERT INTO employee" +
             "  (last_name, first_name, birth_date, sex, phone, email, company_id, job, team_id, user_type, password) VALUES " +
-            " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, md5(?));";
+            " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ;";
  
         int result = 0;
  
