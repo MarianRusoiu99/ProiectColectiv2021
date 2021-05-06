@@ -1,0 +1,93 @@
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li a.active {
+  background-color: #33ccff;
+  color: white;
+  border-radius: 0px 0px 0px 0px;
+}
+
+li a:hover:not(.active) {
+  background-color: #cceeff;
+  color: black;
+  border-radius: 0px 0px 0px 0px;
+}
+
+a#firstnavbar.active {
+  background-color: #33ccff;
+  color: white;
+  border-radius: 10px 10px 0px 0px;
+}
+
+a#firstnavbar:hover:not(.active) {
+  background-color: #cceeff;
+  color: black;
+  border-radius: 10px 10px 0px 0px;
+}
+
+a#lastnavbar.active {
+  background-color: #33ccff;
+  color: white;
+  border-radius: 0px 0px 10px 10px;
+}
+
+a#lastnavbar:hover:not(.active) {
+  background-color:#cceeff;
+  color: black;
+  border-radius: 0px 0px 10px 10px;
+}
+
+/* BASIC */
+
+html {
+  background-image: url("https://wallpaperaccess.com/full/1236485.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+}
+
+a {
+  color: #92badd;
+  display:inline-block;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+h2 {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display:inline-block;
+  margin: 40px 8px 10px 8px; 
+  color: #cccccc;
+}
+
+
+#formContent {
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  background: #fff;
+  padding: 30px;
+  max-width: 450px;
+  position: relative;
+  padding: 0px;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}
