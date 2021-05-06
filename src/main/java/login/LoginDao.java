@@ -19,9 +19,8 @@ public class LoginDao {
         try (Connection connection = DriverManager
                 .getConnection("jdbc:mysql://localhost:3307/task-manager", "root", "admin");
  
-                // Step 2:Create a statement using connection object
-                PreparedStatement preparedStatement = connection
-                        .prepareStatement("select id from employee where email = ? and password = ? ")) {
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement = connection.prepareStatement("select id from employee where email = ? and password = ? ")) {
             preparedStatement.setString(1, loginBean.getEmail());
             preparedStatement.setString(2, loginBean.getPassword());
  

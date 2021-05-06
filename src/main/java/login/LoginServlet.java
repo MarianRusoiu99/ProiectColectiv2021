@@ -1,7 +1,7 @@
 package login;
 
 import java.io.IOException;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +21,7 @@ import upper.info.UpperInfoDao;
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private LoginDao loginDao;
+    public static Integer userID = null;
  
     public void init() {
         loginDao = new LoginDao();
@@ -41,12 +42,14 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("id1",loginDao.validate(loginBean)); //ce dracu esti tu ???
                 request.setAttribute("id2",loginDao.validate(loginBean));
-                System.out.println(loginDao.validate(loginBean));
-                System.out.println(request.getAttribute("id2"));
+	                System.out.println(loginDao.validate(loginBean));
+	                System.out.println(request.getAttribute("id2"));
+	            userID = loginDao.validate(loginBean);
                 UpperInfoDao.info((Integer)request.getAttribute("id2"));
                 request.setAttribute("nume",UpperInfoBean.getNume());
                 request.setAttribute("job",UpperInfoBean.getJob());
                 request.setAttribute("tip_user",UpperInfoBean.getTip_user());
+                request.setAttribute("companie",UpperInfoBean.getCompanie());
                 request.getRequestDispatcher("profile.jsp").forward(request, response);
                 //response.sendRedirect("profile.jsp");
             } else {

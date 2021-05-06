@@ -1,4 +1,4 @@
-package upper.info;
+package upper.info_employeeManagement;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 //import login.LoginBean;
 
-public class UpperInfoDao {
+public class UpperInfoEmployeeManagementDao {
 	
 	public static void info(Integer id) throws ClassNotFoundException {
         boolean status = false;
@@ -20,7 +20,7 @@ public class UpperInfoDao {
         String user_type = "";
         String name = "";
         String company = "";
-        UpperInfoBean o = new UpperInfoBean();
+        UpperInfoEmployeeManagementDao o = new UpperInfoEmployeeManagementDao();
         //String company_name = "";
         //ArrayList<String> data = new ArrayList<String>();
         
@@ -46,10 +46,10 @@ public class UpperInfoDao {
             	job = rs.getString("e.job");
             	user_type = rs.getString("e.user_type");
             	company = rs.getString("c.name");
-            	UpperInfoBean.setNume(name);
-            	UpperInfoBean.setJob(job);
-            	UpperInfoBean.setTip_user(user_type);
-            	UpperInfoBean.setCompanie(company);
+            	UpperInfoEmployeeManagementBean.setNume(name);
+            	UpperInfoEmployeeManagementBean.setJob(job);
+            	UpperInfoEmployeeManagementBean.setTip_user(user_type);
+            	UpperInfoEmployeeManagementBean.setCompanie(company);
             	//UpperInfoBean.setJob(job);
             	//UpperInfoBean.setTip_user(user_type);
             }

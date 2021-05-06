@@ -1,30 +1,28 @@
-package registration;
- 
+package employeeManagement;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
- 
- 
-public class EmployeeDao {
- 
-    public int registerEmployee(EmployeeBean employee) throws ClassNotFoundException {
+
+public class EditEmployeeDao {
+
+public int editEmployee (AddEmployeeBean employee) throws ClassNotFoundException {
         
-        String INSERT_COMPANY_SQL = "INSERT INTO company" +
-                "  (name) VALUES " + " (?);";
-     
-        String SELECT_QUERY = "SELECT id FROM company WHERE name = ?";
+    	String SELECT_EMPLOYEE = "SELECT e.last_name, e.first_name, e.birth_date, e.sex, e.job, s.name as skill, e.email, e.phone FROM employee e, skill s;";
         
-        String INSERT_USERS_SQL = "INSERT INTO employee" +
-            "  (last_name, first_name, birth_date, sex, phone, email, company_id, job, user_type, password) VALUES " +
-            " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-        
-        //String DELETE_COMPANY_SQL = "DELETE FROM company WHERE id = ?";
+    	String SELECT_QUERY = "SELECT id FROM company WHERE name = ?";
+    	
+    	String SELECT_EMPid_QUERY = "SELECT id FROM employee WHERE email = ?";
+    	
+        String UPDATE_USERS_SQL = "UPDATE employee SET last_name = ?, first_name = ?, birth_date = ?, sex = ?, phone = ?, email = ?, company_id = ?, job = ?, team_id = ?, user_type = ?, password = ?)"
+        		+ "WHERE id  = ?";
  
         int result = 0;
  
         int companie = 0;
+        String skill = null;
         
         Class.forName("com.mysql.jdbc.Driver");
         
@@ -38,22 +36,6 @@ public class EmployeeDao {
                 e1.printStackTrace();
             }
         
-        
-        try {
-                // Step 2:Create a statement using connection object
-                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_COMPANY_SQL);
-                preparedStatement.setString(1, employee.getCompany());
-     
-                System.out.println(preparedStatement);
-                // Step 3: Execute the query or update query
-                result = preparedStatement.executeUpdate();
-           
-                //System.out.println("RESULT COMPANY: " + result);
-     
-            } catch (SQLException e) {
-                // process sql exception
-                printSQLException(e);
-            }
         
         
         try {
@@ -69,7 +51,6 @@ public class EmployeeDao {
                 companie = result1.getInt(1);
             }
        
-            //System.out.println("RESULT1: " + result1);
  
             } catch (SQLException e) {
                 // process sql exception
@@ -81,7 +62,7 @@ public class EmployeeDao {
         try {
                 
             // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USERS_SQL);
             //preparedStatement.setInt(1, 1);
             preparedStatement.setString(1, employee.getLastName());
             preparedStatement.setString(2, employee.getFirstName());
@@ -91,38 +72,20 @@ public class EmployeeDao {
             preparedStatement.setString(6, employee.getEmail());
             preparedStatement.setInt(7, companie);
             preparedStatement.setString(8, employee.getJob());
-            preparedStatement.setString(9, "admin");
-            preparedStatement.setString(10, employee.getPassword());
+            preparedStatement.setString(9, employee.getTeam());
+            preparedStatement.setString(10, "employee");
+            preparedStatement.setString(11, "");
  
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             result = preparedStatement.executeUpdate();
-            //System.out.println("RESULT: " + result);
  
         } catch (SQLException e) {
             // process sql exception
             printSQLException(e);
         }
-        
-//        if(result == 1)
-//        {
-//        	
-//        	
-//        	try {
-//        		
-//        		PreparedStatement preparedStatement = connection.prepareStatement(DELETE_COMPANY_SQL);
-//        		preparedStatement.setInt(1, companie);
-//        		
-//        	} catch (SQLException e) {
-//                // process sql exception
-//                printSQLException(e);
-//            }
-//        	
-//        }
-        
         return result;
     }
-    
     
  
     private void printSQLException(SQLException ex) {
@@ -140,4 +103,6 @@ public class EmployeeDao {
             }
         }
     }
+
+	
 }

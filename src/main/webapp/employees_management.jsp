@@ -14,7 +14,7 @@
 if((request.getSession(false).getAttribute("id1")== null))
 {
 %>
-<jsp:forward page="/Login.jsp"></jsp:forward>
+<!--<jsp:forward page="/Login.jsp"></jsp:forward>-->
 <%} %>
 <body style="position:relative; margin: 0;">
 
@@ -57,9 +57,165 @@ TheTaskDispatcherApp
 -->
 
 <div class="content" align="center" style="min-height: 350px;">
-		<h1>pagina EMPLOYEES MANAGEMENT</h1>
-		Welcome <%=request.getAttribute("id2") %>
-		<a href="login.jsp">Log out</a>
+
+
+<table style="width: 110%">	
+		
+<!--  PRIMA COLOANA -->	
+
+<td style="width:45%">	
+ <div align="center">
+  <h1>Add Employee</h1>
+  
+<!--  CHOOSE A FILE -->	
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<main class="main_full">
+	<div class="container">
+		<div class="panel">
+			<div class="button_outer">
+				<div class="btn_upload">
+					Profile photo: 
+					<input type="file" id="upload_file" name="">
+				</div>
+				<div class="processing_bar"></div>
+				<div class="success_box"></div>
+			</div>
+		</div>
+		<div class="error_msg"></div>
+		<div class="uploaded_file_view" id="uploaded_view">
+			<button class="file_remove">x</button>
+		</div>
+	</div>
+</main>
+
+<!--  PANA AICI  -->
+
+
+  <form action="<%= request.getContextPath() %>/addEmployee" method="post">
+   <table style="with: 80%">
+    <tr>
+     <td>Last Name</td>
+     <td><input type="text" name="lastName" /></td>
+    </tr>
+    <tr>
+     <td>First Name</td>
+     <td><input type="text" name="firstName" /></td>
+    </tr>
+    <tr>
+     <td>Birth Date</td>
+     <td><input type="date" class="fadeIn second" name="birthDate"></td>
+    </tr>
+    <tr>
+     <td>Gender</td>
+     <td><input type="radio" name="sex" value="M" required>Male
+         <input type="radio" name="sex" value="F" required>Female
+         <input type="radio" name="sex" value="O" required>Other
+     </td>
+    </tr>
+    <tr>
+     <td>Job</td>
+     <td><input type="text" name="job" /></td>
+    </tr>
+    <tr>
+     <td>Skills</td>
+     <td><input type="text" name="skills" /></td>
+    </tr>
+    <tr>
+     <td>Email</td>
+     <td><input type="text" name="email" /></td>
+    </tr>
+    <tr>
+     <td>Phone</td>
+     <td><input type="text" name="phone" /></td>
+    </tr>
+   </table>
+   <input type="submit" value="Add employee" />
+  </form>
+ </div>
+</td>
+ 
+<!-- A DOUA COLOANA -->
+<td>
+
+ <div align="center">
+  <h1>Update Employee</h1>
+  
+  
+  <!--  CHOOSE A FILE -->	
+ 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<main class="main_full">
+	<div class="container">
+		<div class="panel">
+			<div class="button_outer">
+				<div class="btn_upload">
+					Profile photo: 
+					<input type="file" id="upload_file" name="">
+				</div>
+				<div class="processing_bar"></div>
+				<div class="success_box"></div>
+			</div>
+		</div>
+		<div class="error_msg"></div>
+		<div class="uploaded_file_view" id="uploaded_view">
+			<button class="file_remove">x</button>
+		</div>
+	</div>
+</main>
+
+<!--  PANA AICI  -->
+
+
+  <form action="<%= request.getContextPath() %>/editEmployee" method="post">
+   <table style="with: 80%">
+   
+    <tr>
+     <td>Last Name</td>
+     <td><input type="text" name="lastName" /></td>
+    </tr>
+    <tr>
+     <td>First Name</td>
+     <td><input type="text" name="firstName" /></td>
+    </tr>
+    <tr>
+     <td>Birth Date</td>
+     <td><input type="date" class="fadeIn second" name="birthDate"></td>
+    </tr>
+    <tr>
+     <td>Gender</td>
+     <td><input type="radio" name="sex" value="M" required>Male
+         <input type="radio" name="sex" value="F" required>Female
+         <input type="radio" name="sex" value="O" required>Other
+     </td>
+    </tr>
+    <tr>
+     <td>Job</td>
+     <td><input type="text" name="job" /></td>
+    </tr>
+    <tr>
+     <td>Skills</td>
+     <td><input type="text" name="skills" /></td>
+    </tr>
+    <tr>
+     <td>Email</td>
+     <td><input type="text" name="email" /></td>
+    </tr>
+    <tr>
+     <td>Phone</td>
+     <td><input type="text" name="phone" /></td>
+    </tr>
+   </table>
+   <input type="submit" value="Update employee" />
+  </form>
+ </div>
+ </td>
+</table> 
+ 
+ <!--  ---------------------------------------------------  -->
+ 
 </div>
 </div>
 <div class="footer">
@@ -68,7 +224,7 @@ TheTaskDispatcherApp
 	<TD>
 	<TD>
 	<TD>
-	<TD align="right"><b><font size="+2">Have a question?</font></b>
+	<TD align="center"><b><font size="+2">Have a question?</font></b>
 <TR> 
 	<TD>
 	<TD>

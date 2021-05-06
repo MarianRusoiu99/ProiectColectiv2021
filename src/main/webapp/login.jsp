@@ -51,7 +51,7 @@ TheTaskDispatcherApp
 	<TD>
 	<TD>
 	<TD>
-	<TD align="right"><b><font size="+2">Have a question?</font></b>
+	<TD align="center"><b><font size="+2">Have a question?</font></b>
 <TR> 
 	<TD>
 	<TD>
