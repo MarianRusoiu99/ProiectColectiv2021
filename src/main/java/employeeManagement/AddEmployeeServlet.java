@@ -47,6 +47,7 @@ public class AddEmployeeServlet extends HttpServlet {
         String birthDate = request.getParameter("birthDate");
         String sex = request.getParameter("sex");
         String job = request.getParameter("job");
+        String skill = request.getParameter("skills");
         String email = request.getParameter("email");
         //String company = request.getParameter("company");
         //String position = request.getParameter("position");
@@ -60,6 +61,7 @@ public class AddEmployeeServlet extends HttpServlet {
         employee.setBirthDate(birthDate);
         employee.setSex(sex);
         employee.setJob(job);
+        employee.setSkill(skill);
         employee.setEmail(email);
         //employee.setCompany(company);
         //employee.setPosition(position);
