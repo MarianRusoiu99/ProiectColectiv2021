@@ -57,9 +57,115 @@ TheTaskDispatcherApp
 -->
 
 <div class="content" align="center" style="min-height: 350px;">
-		<h1>pagina TASKS MANAGEMENT</h1>
+		<!-- <h1>pagina TASKS MANAGEMENT</h1>
 		Welcome <%=request.getAttribute("id2") %>
-		<a href="login.jsp">Log out</a>
+		<a href="login.jsp">Log out</a> -->
+		
+		
+<table style="width: 110%">	
+		
+<!--  PRIMA COLOANA -->	
+
+<td style="width:45%">	
+ <div align="center">
+  <h1>Add Task</h1>
+
+
+  <form action="<%= request.getContextPath() %>/addTask" method="post">
+   <table style="with: 80%">
+    <tr>
+     <td>Task Name</td>
+     <td><input type="text" name="numeTask" /></td>
+    </tr>
+    <tr>
+     <td>Description</td>
+     <td><input type="text" name="descriereTask" /></td>
+    </tr>
+    <tr>
+     <td>Technology</td>
+     <td><input type="text" name="tehnologiiTask" /></td>
+    </tr>
+    <tr>
+     <td style="text-align:right;padding-right:10px;">Deadline</td>
+     <td><input type="date" class="fadeIn second" name="deadlineTask"></td>
+    </tr>
+    <tr>
+     <td>Type</td>
+     <td><input type="radio" name="tipTask" value="echipa" required>Echipa
+         <input type="radio" name="tipTask" value="individual" required>Individual
+     </td>
+    </tr>
+    <tr>
+     <td>Repetitive</td>
+     <td><input type="radio" name="repetitive" value="Yes" required>Yes
+         <input type="radio" name="repetitive" value="No" required>No
+     </td>
+    </tr>
+    <tr>
+     <td>SLA</td>
+     <td><input type="text" name="slaTask" /></td>
+    </tr>
+   </table>
+   <input type="submit" value="Add task" />
+  </form>
+  
+ </div>
+</td>
+ 
+<!-- A DOUA COLOANA -->
+<td>
+
+ <div align="center">
+  <h1>Update Task</h1>
+
+  <form action="<%= request.getContextPath() %>/editTask" method="post">
+   <table style="with: 80%">
+    <tr>
+     <td>Task Name</td>
+     <td><input type="text" name="numeTask" /></td>
+    </tr>
+    <tr>
+     <td>Description</td>
+     <td><input type="text" name="descriereTask" /></td>
+    </tr>
+    <tr>
+     <td>Technology</td>
+     <td><input type="text" name="tehnologiiTask" /></td>
+    </tr>
+    <tr>
+     <td style="text-align:right;padding-right:10px;">Deadline</td>
+     <td><input type="date" class="fadeIn second" name="deadlineTask"></td>
+    </tr>
+    <tr>
+     <td>Type</td>
+     <td><input type="radio" name="tipTask" value="echipa" required>Echipa
+         <input type="radio" name="tipTask" value="individual" required>Individual
+     </td>
+    </tr>
+    <tr>
+     <td>Repetitive</td>
+     <td><input type="radio" name="repetitive" value="Yes" required>Yes
+         <input type="radio" name="repetitive" value="No" required>No
+     </td>
+    </tr>
+    <tr>
+     <td>SLA</td>
+     <td><input type="text" name="slaTask" /></td>
+    </tr>
+   </table>
+   <input type="submit" value="Update task" />
+  </form>
+  
+ </div>
+ </td>
+</table> 
+ 
+ <!--  ---------------------------------------------------  -->		
+		
+		
+		
+		
+		
 </div>
 </div>
 <div class="footer">

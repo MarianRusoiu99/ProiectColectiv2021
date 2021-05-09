@@ -42,11 +42,12 @@ public class EditEmployeeServlet extends HttpServlet {
     throws ServletException, IOException {
  
     	
-        String firstName = request.getParameter("firstName");
+    	String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String birthDate = request.getParameter("birthDate");
         String sex = request.getParameter("sex");
         String job = request.getParameter("job");
+        String skill = request.getParameter("skills");
         String email = request.getParameter("email");
         //String company = request.getParameter("company");
         //String position = request.getParameter("position");
@@ -60,6 +61,7 @@ public class EditEmployeeServlet extends HttpServlet {
         employee.setBirthDate(birthDate);
         employee.setSex(sex);
         employee.setJob(job);
+        employee.setSkill(skill);
         employee.setEmail(email);
         //employee.setCompany(company);
         //employee.setPosition(position);
@@ -70,30 +72,7 @@ public class EditEmployeeServlet extends HttpServlet {
         try {
             
         	editEmployeeDao.editEmployee(employee);
-            
-        	
-//        	if(addEmployeeDao.validate(employee)!=0) {
-//        		
-//        		HttpSession session = request.getSession();
-//                session.setAttribute("id1",addEmployeeDao.validate(employee)); //ce dracu esti tu ???
-//                request.setAttribute("id2",addEmployeeDao.validate(employee));
-//	                System.out.println(addEmployeeDao.validate(employee));
-//	                System.out.println(request.getAttribute("id2"));
-//	                UpperInfoEmployeeManagementDao.info((Integer)request.getAttribute("id2"));
-//                request.setAttribute("nume",UpperInfoEmployeeManagementBean.getNume());
-//                request.setAttribute("job",UpperInfoEmployeeManagementBean.getJob());
-//                request.setAttribute("tip_user",UpperInfoEmployeeManagementBean.getTip_user());
-//                request.setAttribute("companie",UpperInfoEmployeeManagementBean.getCompanie());
-//                request.getRequestDispatcher("employees_management.jsp").forward(request, response);
-//                //response.sendRedirect("profile.jsp");
-//            } else {
-//                //HttpSession session = request.getSession();
-//                response.sendRedirect("employees_management.jsp");
-//                //session.setAttribute("user", username);
-//                //response.sendRedirect("login.jsp");
-//            
-//        	}
-            
+
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -10,11 +10,13 @@ public class EditEmployeeDao {
 
 public int editEmployee (AddEmployeeBean employee) throws ClassNotFoundException {
         
-    	String SELECT_EMPLOYEE = "SELECT e.last_name, e.first_name, e.birth_date, e.sex, e.job, s.name as skill, e.email, e.phone FROM employee e, skill s;";
+    	String SELECT_EMPLOYEE = "SELECT e.last_name, e.first_name, e.birth_date, e.sex, e.job, s.name as skill, e.email, e.phone "
+    			+ "FROM `task-manager`.`employee` e, `task-manager`.`skill` s, `task-manager`.`employee_skill` es "
+    			+ "WHERE s.id = es.skill_id and e.id = es.employee_id;";
         
-    	String SELECT_QUERY = "SELECT id FROM company WHERE name = ?";
+    	String SELECT_QUERY = "SELECT company_id FROM employee WHERE id = ?";
     	
-    	String SELECT_EMPid_QUERY = "SELECT id FROM employee WHERE email = ?";
+    	String SELECT_EMPid = "SELECT id FROM employee WHERE email = ? and password = ?";
     	
         String UPDATE_USERS_SQL = "UPDATE employee SET last_name = ?, first_name = ?, birth_date = ?, sex = ?, phone = ?, email = ?, company_id = ?, job = ?, team_id = ?, user_type = ?, password = ?)"
         		+ "WHERE id  = ?";

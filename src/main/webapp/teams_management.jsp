@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,9 +58,93 @@ TheTaskDispatcherApp
 -->
 
 <div class="content" align="center" style="min-height: 350px;">
-		<h1>pagina TEAMS MANAGEMENT</h1>
+		<!-- <h1>pagina TEAMS MANAGEMENT</h1>
 		Welcome <%=request.getAttribute("id2") %>
-		<a href="login.jsp">Log out</a>
+		<a href="login.jsp">Log out</a> -->
+		
+
+
+<table style="width: 110%">	
+		
+<!--  PRIMA COLOANA -->	
+
+<td style="width:45%">	
+ <div align="center">
+  <h1>Add Team</h1>
+
+
+  <form action="<%= request.getContextPath() %>/addTeam" method="post">
+   <table style="with: 80%">
+    <tr>
+     <td>Team Name</td>
+     <td><input type="text" name="numeEchipa" /></td>
+    </tr>
+    <tr>
+     <td>Team Leader (email)</td>
+     <td><input type="text" name="liderEchipa" /></td>
+    </tr>
+    <tr>
+     <td>Team Members</td>
+     <td><input type="text" name="membruEchipa" /></td>
+    </tr>
+    <tr>
+     <td>Team Skills</td>
+     <td><input type="text" name="skillEchipa" /></td>
+    </tr>
+   </table>
+   <input type="submit" value="Add team" />
+  </form>
+ </div>
+</td>
+ 
+<!-- A DOUA COLOANA -->
+<td>
+
+ <div align="center">
+  <h1>Update Team</h1>
+  
+  
+  
+  
+<!--  DROPDOWN BUTTON  --> 
+
+
+<!--  DROPDOWN BUTTON  (pana aici)  -->
+
+
+
+
+  <form action="<%=request.getContextPath() %>/editTeam" method="post">
+   <table style="with: 80%">
+   
+    <tr>
+     <td>Team Name</td>
+     <td><input type="text" name="numeEchipa" /></td>
+    </tr>
+    <tr>
+     <td>Team Leader (email)</td>
+     <td><input type="text" name="liderEchipa" /></td>
+    </tr>
+    <tr>
+     <td>Team Members</td>
+     <td><input type="text" name="membruEchipa" /></td>
+    </tr>
+    <tr>
+     <td>Team Skills</td>
+     <td><input type="text" name="skillEchipa" /></td>
+    </tr>
+   </table>
+   <input type="submit" value="Update team" />
+  </form>
+ </div>
+ </td>
+</table> 
+ 
+ <!--  ---------------------------------------------------  -->		
+		
+		
+		
+		
 </div>
 </div>
 <div class="footer">

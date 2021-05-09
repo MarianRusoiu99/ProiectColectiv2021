@@ -104,21 +104,6 @@ public class EmployeeDao {
             printSQLException(e);
         }
         
-//        if(result == 1)
-//        {
-//        	
-//        	
-//        	try {
-//        		
-//        		PreparedStatement preparedStatement = connection.prepareStatement(DELETE_COMPANY_SQL);
-//        		preparedStatement.setInt(1, companie);
-//        		
-//        	} catch (SQLException e) {
-//                // process sql exception
-//                printSQLException(e);
-//            }
-//        	
-//        }
         
         return result;
     }

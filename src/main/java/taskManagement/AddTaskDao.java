@@ -1,4 +1,4 @@
-package employeeManagement;
+package taskManagement;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,52 +7,48 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import login.LoginServlet;
-import passwordGenerator.PasswordGenerator;
-import sendMail.SendEmail;
+//import passwordGenerator.PasswordGenerator;
+//import sendMail.SendEmail;
 
 
  
-public class AddEmployeeDao {
+public class AddTaskDao {
 	
 	
-    public int addEmployee (AddEmployeeBean employee) throws ClassNotFoundException {
+    public int addTask (AddTaskBean task) throws ClassNotFoundException {
         
-    	String SELECT_QUERY = "SELECT company_id FROM employee WHERE id = ?";   // selecteaza id-ul companiei
-    																			// apoi insereaza un skill (al companiei - e unic) - skill
-    	String INSERT_SKILL_SQL = "INSERT INTO skill" +                   		// selecteaza id-ul angajatului
-                "  (name, company_id) VALUES " 									// selecteaza id-ul skill-ului
-                + " (?, ?);";													// apoi insereaza un skill (al angajatului) - employee_skill
-    																			// la final adaug agajatul - employee
+    	String SELECT_QUERY = "SELECT company_id, email FROM employee WHERE id = ?";
     	
-        String INSERT_USERS_SQL = "INSERT INTO employee" +
-                "  (last_name, first_name, birth_date, sex, phone, email, company_id, job, team_id, user_type, password) VALUES " +
-                " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String INSERT_TASK_SQL = "INSERT INTO task" +
+                "  (name, description, deadline, type, repetitive, contact_email, company_id) VALUES " +
+                " (?, ?, ?, ?, ?, ?, ?);";
     	
-    	String SELECT_EMPid = "SELECT id FROM employee WHERE email = ? and password = ?";
+    	String SELECT_TASKid = "SELECT id FROM task WHERE name = ? and company_id = ?";
     	
     	String SELECT_SKILLid = "SELECT id FROM skill WHERE name = ? and company_id = ?";
     	
-        String INSERT_EMPLOYEE_SKILL_SQL = "INSERT INTO employee_skill" +
-                "  (employee_id, skill_id) VALUES " 
+    	String INSERT_TASKskill_SQL = "INSERT INTO task_skill" +
+                "  (task_id, skill_id) VALUES "
                 + " (?, ?);";
+    	
+    	
+//    	String SELECT_TEAMid = "SELECT id FROM team WHERE leader_email = ? and company_id = ?";
+//    	
+//    	String SELECT_teamTASKid = "SELECT id FROM task WHERE contact_email = ? and company_id = ?";
+//    	
+//    	String INSERT_TEAMtask = "INSERT INTO team_task"
+//    			+ "(team_id, task_id, status) VALUES "
+//    			+ "(?, ?, ?)";
        
  
         
         int result = 0;
         int companie = 0;
-        Integer id_emp = 0;
+        String email = null;
+        //Integer id_lider = 0;
         Integer id_skill = 0;
-//        String pswd = null;
-//        pswd = PasswordGenerator.generate(8);
-//        System.out.println("PAROLA RANDOM: " + pswd);
-        
-        
-        PasswordGenerator passwordGenerator = new PasswordGenerator.PasswordGeneratorBuilder()
-                .useDigits(true)
-                .useLower(true)
-                .useUpper(true)
-                .build();
-        String password = passwordGenerator.generate(8);
+        Integer id_task = 0;
+
         
         
         Class.forName("com.mysql.jdbc.Driver");
@@ -80,87 +76,56 @@ public class AddEmployeeDao {
             ResultSet result1 = preparedStatement2.executeQuery();
             if (result1.next()) {
                 companie = result1.getInt(1);
+                email = result1.getString(2);
             }
             
-//            ResultSet rs = preparedStatement2.executeQuery();
-//            status = rs.next();
-//            if(status==true)
-//            	id = rs.getInt("company_id");
-       
-            //System.out.println("RESULT1: " + result1);
- 
-            } catch (SQLException e) {
-                // process sql exception
-                printSQLException(e);
-            }
-        
-        
-        try {
-                // Step 2:Create a statement using connection object
-                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SKILL_SQL);
-                preparedStatement.setString(1, employee.getSkill());
-                preparedStatement.setInt(2, companie);
-     
-                System.out.println(preparedStatement);
-                // Step 3: Execute the query or update query
-                result = preparedStatement.executeUpdate();
-           
-     
-            } catch (SQLException e) {
-                // process sql exception
-                printSQLException(e);
-            }
-        
-        
 
+            } catch (SQLException e) {
+                // process sql exception
+                printSQLException(e);
+            }
+        
+        
         try {
-                
+            
             // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_TASK_SQL);
             //preparedStatement.setInt(1, 1);
-            preparedStatement.setString(1, employee.getLastName());
-            preparedStatement.setString(2, employee.getFirstName());
-            preparedStatement.setString(3, employee.getBirthDate());
-            preparedStatement.setString(4, employee.getSex());
-            preparedStatement.setString(5, employee.getPhone());
-            preparedStatement.setString(6, employee.getEmail());
+            preparedStatement.setString(1, task.getNumeTask());
+            preparedStatement.setString(2, task.getDescriereTask());
+            preparedStatement.setString(3, task.getDeadlineTask());
+            preparedStatement.setString(4, task.getTipTask());
+            preparedStatement.setString(5, task.getRepetitive());
+            preparedStatement.setString(6, email);
             preparedStatement.setInt(7, companie);
-            preparedStatement.setString(8, employee.getJob());
-            preparedStatement.setString(9, employee.getTeam());
-            preparedStatement.setString(10, "employee");
-            preparedStatement.setString(11, password);
  
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             result = preparedStatement.executeUpdate();
             
-//            SendEmail email = new SendEmail();
-//            System.out.println("EMAIL: " + email);
             
             
         } catch (SQLException e) {
             // process sql exception
             printSQLException(e);
-        }
+        }        
         
-        
-        
+       
         try {
             // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_EMPid);
+            PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_TASKid);
             //preparedStatement2.setInt(1, 1);
-            preparedStatement2.setString(1, employee.getEmail());
-            preparedStatement2.setString(2, password);
+            preparedStatement2.setString(1, task.getNumeTask());
+            preparedStatement2.setInt(2, companie);
  
             System.out.println(preparedStatement2);
             // Step 3: Execute the query or update query
+            
             ResultSet result1 = preparedStatement2.executeQuery();
             if (result1.next()) {
-                id_emp = result1.getInt(1);
-            };
+                id_task = result1.getInt("id");
+            }
             
-            System.out.println("ID_EMP: " + id_emp);
-       
 
             } catch (SQLException e) {
                 // process sql exception
@@ -172,16 +137,17 @@ public class AddEmployeeDao {
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_SKILLid);
             //preparedStatement2.setInt(1, 1);
-            preparedStatement2.setString(1, employee.getSkill());
+            preparedStatement2.setString(1, task.getTehnologiiTask());
             preparedStatement2.setInt(2, companie);
  
             System.out.println(preparedStatement2);
             // Step 3: Execute the query or update query
+            
             ResultSet result1 = preparedStatement2.executeQuery();
             if (result1.next()) {
-                id_skill = result1.getInt(1);
+                id_skill = result1.getInt("id");
             }
-       
+            
 
             } catch (SQLException e) {
                 // process sql exception
@@ -189,17 +155,20 @@ public class AddEmployeeDao {
             }
         
         
+
         try {
+                
             // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_EMPLOYEE_SKILL_SQL);
-            preparedStatement.setInt(1, id_emp);
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_TASKskill_SQL);
+            //preparedStatement.setInt(1, 1);
+            preparedStatement.setInt(1, id_task);
             preparedStatement.setInt(2, id_skill);
  
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             result = preparedStatement.executeUpdate();
-       
- 
+
+            
         } catch (SQLException e) {
             // process sql exception
             printSQLException(e);
@@ -207,7 +176,6 @@ public class AddEmployeeDao {
         
         return result;
     }
-    
     
  
     private void printSQLException(SQLException ex) {
@@ -226,3 +194,4 @@ public class AddEmployeeDao {
         }
     }
 }
+
