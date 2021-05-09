@@ -40,12 +40,12 @@ TheTaskDispatcherApp
 <div style="width: 100%; margin-top:20px;">
 <div id="formContent" style="float:left; left:250px; position:relative;">
 <ul>
-  <li style="border-bottom: 1px solid #555;"><a id="firstnavbar" href="profile.jsp">Profil</a></li>
-  <li style="border-bottom: 1px solid #555;"><a class="active" href="#taskuri">Taskuri</a></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="profil">Profil</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="taskuri">Taskuri</button></form></li>
   <li style="border-bottom: 1px solid #555;"><a href="echipa.jsp">Echipa</a></li>
   <li style="border-bottom: 1px solid #555;"><a href="task_suplim.jsp">Taskuri suplimentare</a></li>
   <li style="border-bottom: 1px solid #555;"><a href="tasks_management.jsp">Tasks management</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="employees_management.jsp">Employees management</a></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="employees_management">Employees management</button></form></li>
   <li style="border-bottom: 1px solid #555;"><a href="teams_management.jsp">Teams management</a></li>
   <li style="border-bottom: 1px solid #555;"><a href="organigrama.jsp">Organigrama</a></li>
   <li style="border-bottom: 1px solid #555;"><a href="date_de_contact.jsp">Date de contact</a></li>

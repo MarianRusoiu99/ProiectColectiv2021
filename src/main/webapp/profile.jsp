@@ -7,7 +7,11 @@
 <link href="CSS/navbar.css" rel="stylesheet" id="bootstrap-css">
 <link href="CSS/content.css" rel="stylesheet" id="bootstrap-css">
 <link href="CSS/footer.css" rel="stylesheet" id="bootstrap-css">
-
+<style>
+img {
+  border-radius: 50%;
+}
+</style>
 <title>Insert title here</title>
 </head>
 <% //In case, if Admin session is not set, redirect to Login page
@@ -40,12 +44,12 @@ TheTaskDispatcherApp
 <div style="width: 100%; margin-top:20px;">
 <div id="formContent" style="float:left; left:250px; position:relative;">
 <ul>
-  <li style="border-bottom: 1px solid #555;"><a id="firstnavbar" class="active" href="#profil">Profil</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="taskuri.jsp">Taskuri</a></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="profil">Profil</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="taskuri">Taskuri</button></form></li>
   <li style="border-bottom: 1px solid #555;"><a href="echipa.jsp">Echipa</a></li>
   <li style="border-bottom: 1px solid #555;"><a href="task_suplim.jsp">Taskuri suplimentare</a></li>
   <li style="border-bottom: 1px solid #555;"><a href="tasks_management.jsp">Tasks management</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="employees_management.jsp">Employees management</a></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="employees_management">Employees management</button></form></li>
   <li style="border-bottom: 1px solid #555;"><a href="teams_management.jsp">Teams management</a></li>
   <li style="border-bottom: 1px solid #555;"><a href="organigrama.jsp">Organigrama</a></li>
   <li style="border-bottom: 1px solid #555;"><a href="date_de_contact.jsp">Date de contact</a></li>
@@ -57,9 +61,64 @@ TheTaskDispatcherApp
 -->
 
 <div class="content" align="center" style="min-height: 350px;">
-		<h1>You have logged in successfully</h1>
+		<!-- <h1>You have logged in successfully</h1>
 		Welcome <%=request.getAttribute("id2") %>
-		<a href="login.jsp">Log out</a>
+		<a href="login.jsp">Log out</a>  -->
+		
+		
+		
+		
+<form action="<%=request.getContextPath() %>/changePassword" method="post">
+   <table style="with: 80%">
+   
+   <tr>
+   <td>
+   <img src="poze/img_avatar2.png" alt="Avatar" align="left" style="width:100px">
+   </td>
+   </tr>
+  <tr></tr>
+  <tr></tr>
+    <tr>
+     <td align="left"><b>Last Name: </b><%=request.getAttribute("last_name")%></td>
+    </tr>
+    <tr>
+     <td align="left"><b>First Name: </b><%=request.getAttribute("first_name")%></td>
+    </tr>
+    <tr>
+     <td align="left"><b>Job: </b><%=request.getAttribute("job2")%></td>
+    </tr>
+    <tr>
+     <td align="left"><b>Sex: </b><%=request.getAttribute("sex")%></td>
+    </tr>
+    <tr>
+     <td align="left"><b>Birth Date: </b><%=request.getAttribute("birth_date")%></td>
+    </tr>
+    <tr>
+     <td align="left"><b>Email: </b><%=request.getAttribute("email")%></td>
+    </tr>
+    <tr>
+     <td align="left"><b>Phone: </b><%=request.getAttribute("phone")%></td>
+    </tr>
+   </table>
+   <p>
+   <div id="formFooter" align="left">
+      <a class="underlineHover" href="#">Change your Password</a>
+    </div>
+  </form>
+ </div>
+ </td>
+</table> 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 </div>
 </div>
 <div class="footer">
