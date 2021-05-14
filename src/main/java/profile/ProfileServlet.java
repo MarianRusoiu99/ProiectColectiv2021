@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import login.LoginBean;
+import login.LoginServlet;
 import upper.info.UpperInfoBean;
 import upper.info.UpperInfoDao;
 
@@ -42,14 +43,10 @@ public class ProfileServlet extends HttpServlet {
     throws ServletException, IOException {
  
         try {
-            if (loginDao.validate(loginBean)!=0) {
+
                 HttpSession session = request.getSession();
-                session.setAttribute("id1",loginDao.validate(loginBean)); //ce dracu esti tu ???
-                request.setAttribute("id2",loginDao.validate(loginBean));
-	                System.out.println(loginDao.validate(loginBean));
-	                System.out.println(request.getAttribute("id2"));
-	                
-	            userID = loginDao.validate(loginBean);
+                session.setAttribute("id1", LoginServlet.userID); //ce dracu esti tu ???
+                request.setAttribute("id2", LoginServlet.userID);
 	            
 	            ProfileBean profile = new ProfileBean();
 	            try {
@@ -59,7 +56,7 @@ public class ProfileServlet extends HttpServlet {
 	    			e1.printStackTrace();
 	    		}
 	            
-                UpperInfoDao.info((Integer)request.getAttribute("id2"));
+                UpperInfoDao.info(LoginServlet.userID);
                 request.setAttribute("nume",UpperInfoBean.getNume());
                 request.setAttribute("job",UpperInfoBean.getJob());
                 request.setAttribute("tip_user",UpperInfoBean.getTip_user());
@@ -74,12 +71,7 @@ public class ProfileServlet extends HttpServlet {
                 request.setAttribute("phone",profile.getPhone());
                 request.getRequestDispatcher("profile.jsp").forward(request, response);
                 //response.sendRedirect("profile.jsp");
-            } else {
-                //HttpSession session = request.getSession();
-                response.sendRedirect("login.jsp");
-                //session.setAttribute("user", username);
-                //response.sendRedirect("login.jsp");
-            }
+           
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

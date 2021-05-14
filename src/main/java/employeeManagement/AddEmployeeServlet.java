@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import login.LoginServlet;
+import upper.info.UpperInfoBean;
+import upper.info.UpperInfoDao;
 //import employeeManagement.AddEmployeeBean;
 import upper.info_employeeManagement.UpperInfoEmployeeManagementBean;
 import upper.info_employeeManagement.UpperInfoEmployeeManagementDao;
@@ -72,12 +75,19 @@ public class AddEmployeeServlet extends HttpServlet {
         try {
             
         	addEmployeeDao.addEmployee(employee);
+
+	        UpperInfoDao.info(LoginServlet.userID);
+            request.setAttribute("nume",UpperInfoBean.getNume());
+            request.setAttribute("job",UpperInfoBean.getJob());
+            request.setAttribute("tip_user",UpperInfoBean.getTip_user());
+            request.setAttribute("companie",UpperInfoBean.getCompanie());
+            request.getRequestDispatcher("employees_management.jsp").forward(request, response);
             
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
  
-        response.sendRedirect("employees_management.jsp");
+        //response.sendRedirect("employees_management.jsp");
     }
 }

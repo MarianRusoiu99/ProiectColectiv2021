@@ -11,10 +11,8 @@ ResultSet rs=st.executeQuery("select * from employee where email ='"+ name +"'")
 int count=0;
 while(rs.next())
 {
-
 count++;
 }
-
 if(count>0)
 {
 data="Email-ID already exists!";

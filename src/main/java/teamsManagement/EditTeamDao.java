@@ -21,13 +21,13 @@ public class EditTeamDao {
         
     	String SELECT_QUERY = "SELECT company_id FROM employee WHERE id = ?";
     	
-        String INSERT_TEAM_SQL = "INSERT INTO team" +
-                "  (name, leader_email, company_id) VALUES " +
-                " (?, ?, ?);";
+        String INSERT_TEAM_SQL = "SELECT t.name, t.leader_email, e.email, s.name as skill, ts.skill_id"
+        		+ "FROM `task-manager`.`team` t, `task-manager`.`employee` e, `task-manager`.`skill` s, `task-manager`.`team_skill` ts  "
+        		+ "WHERE e.team_id = t.id and ts.skill_id = s.id and ts.team_id = t.id and t.company_id = ? "
+        		+ "HAVING e.email != t.leader_email and t.id = ?;";
     	
-    	String SELECT_TEAMid = "SELECT id FROM team WHERE leader_email = ? and company_id = ?";
-    	
-    	String SELECT_SKILLid = "SELECT id FROM skill WHERE name = ? and company_id = ?";    // nu cred ca ii complet ??
+        String UPDATE_USERS_SQL = "UPDATE team SET name = ?, leader_email = ?"
+        		+ "WHERE id  = ?";
     	
     	String INSERT_SKILL_SQL = "INSERT INTO team_skill" +
                 "  (team_id, skill_id) VALUES "

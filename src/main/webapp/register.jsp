@@ -13,7 +13,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <script>
-
 function checkPass()
 {
     var pass1 = document.getElementById('password');
@@ -49,7 +48,6 @@ function checkPass()
         message.innerHTML = " These passwords don't match"
     }
 }
-
 function allLetter(inputtxt)
 { 
 	//var firstname = document.getElementById('firstName');
@@ -85,7 +83,6 @@ function allLetter(inputtxt)
 		return false;
 	}
 }
-
 function allLetter2(inputtxt)
 { 
 	//var lastname = document.getElementById('lastName');
@@ -119,7 +116,6 @@ function allLetter2(inputtxt)
 		return false;
 	}
 }
-
 function phonenumber(inputtxt)
 {
   var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
@@ -139,9 +135,6 @@ function phonenumber(inputtxt)
 	   return false;
      }
 }
-
-
-
 function checkEmail(){ 
 	xmlHttp=GetXmlHttpObjectEmail()
 	//var value = document.getElementById('email');
@@ -184,7 +177,6 @@ function GetXmlHttpObjectEmail(){
 	}
 	return xmlHttp;
 }
-
 function checkCompany(){ 
 	xmlHttp=GetXmlHttpObjectCompany()
 	//var value = document.getElementById('email');
@@ -227,7 +219,6 @@ function GetXmlHttpObjectCompany(){
 	}
 	return xmlHttp;
 }
-
 	
 	var Days = [31,28,31,30,31,30,31,31,30,31,30,31];// index => month [0-11]
 	$(document).ready(function(){
@@ -238,7 +229,6 @@ function GetXmlHttpObjectCompany(){
 	    }
 	    $('#day').append(option);
 	    $('#day').val(selectedDay);
-
 	    var option = '<option value="month">month</option>';
 	    var selectedMon ="month";
 	    for (var i=1;i <= 12;i++){
@@ -246,7 +236,6 @@ function GetXmlHttpObjectCompany(){
 	    }
 	    $('#month').append(option);
 	    $('#month').val(selectedMon);
-
 	    var option = '<option value="month">month</option>';
 	    var selectedMon ="month";
 	    for (var i=1;i <= 12;i++){
@@ -276,7 +265,6 @@ function GetXmlHttpObjectCompany(){
 		      return true;
 		  }
 	}
-
 	function change_year(select)
 	{
 	    if( isLeapYear( $(select).val() ) )
@@ -304,7 +292,6 @@ function GetXmlHttpObjectCompany(){
 				       $(day).val(val);
 			     }
 	  }
-
 	function change_month(select) {
 	    var day = $('#day');
 	    var val = $(day).val();
@@ -353,12 +340,10 @@ function GetXmlHttpObjectCompany(){
 		  const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		  return re.test(email);
 		}
-
 		function validate() {
 		  const $result = $("#result");
 		  const email = $("#email").val();
 		  $result.text("");
-
 		  if (validateEmail(email)) {
 		    $result.text("");
 		    //$result.css("color", "green");

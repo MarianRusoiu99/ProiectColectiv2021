@@ -25,7 +25,7 @@ public class AddTeamDao {
                 "  (name, leader_email, company_id) VALUES " +
                 " (?, ?, ?);";
     	
-    	String SELECT_TEAMid = "SELECT id FROM team WHERE leader_email = ? and company_id = ?";
+    	String SELECT_TEAMid = "SELECT id FROM team WHERE name = ? and leader_email = ? and company_id = ?";
     	
     	String SELECT_SKILLid = "SELECT id FROM skill WHERE name = ? and company_id = ?";
     	
@@ -104,8 +104,10 @@ public class AddTeamDao {
         try {
                 // Step 2:Create a statement using connection object
                 PreparedStatement preparedStatement = connection.prepareStatement(SELECT_TEAMid);
-                preparedStatement.setString(1, team.getLiderEchipa());
-                preparedStatement.setInt(2, companie);
+                preparedStatement.setString(1, team.getNumeEchipa());
+                preparedStatement.setString(2, team.getLiderEchipa());
+                preparedStatement.setInt(3, companie);
+                
      
                 System.out.println(preparedStatement);
                 // Step 3: Execute the query or update query

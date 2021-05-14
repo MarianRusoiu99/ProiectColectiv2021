@@ -7,15 +7,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import login.LoginServlet;
+import mail.SendEmail;
 import passwordGenerator.PasswordGenerator;
-import sendMail.SendEmail;
+
 
 
  
 public class AddEmployeeDao {
 	
 	
-    public int addEmployee (AddEmployeeBean employee) throws ClassNotFoundException {
+    public int addEmployee (AddEmployeeBean employee) throws Exception {
         
     	String SELECT_QUERY = "SELECT company_id FROM employee WHERE id = ?";   // selecteaza id-ul companiei
     																			// apoi insereaza un skill (al companiei - e unic) - skill
@@ -81,13 +82,6 @@ public class AddEmployeeDao {
             if (result1.next()) {
                 companie = result1.getInt(1);
             }
-            
-//            ResultSet rs = preparedStatement2.executeQuery();
-//            status = rs.next();
-//            if(status==true)
-//            	id = rs.getInt("company_id");
-       
-            //System.out.println("RESULT1: " + result1);
  
             } catch (SQLException e) {
                 // process sql exception
@@ -133,17 +127,14 @@ public class AddEmployeeDao {
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             result = preparedStatement.executeUpdate();
-            
-//            SendEmail email = new SendEmail();
-//            System.out.println("EMAIL: " + email);
-            
+
             
         } catch (SQLException e) {
             // process sql exception
             printSQLException(e);
         }
         
-        
+        SendEmail.sendMail(employee.getEmail(),"Your password is: " + password);
         
         try {
             // Step 2:Create a statement using connection object

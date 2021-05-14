@@ -11,10 +11,8 @@ ResultSet rs=st.executeQuery("select * from company where name ='"+ name +"'");
 int count=0;
 while(rs.next())
 {
-
 count++;
 }
-
 if(count>0)
 {
 data="Company already exists!";

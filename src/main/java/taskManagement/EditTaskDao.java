@@ -19,24 +19,30 @@ public class EditTaskDao {
         
     	String SELECT_QUERY = "SELECT company_id FROM employee WHERE id = ?";
     	
-        String INSERT_TEAM_SQL = "INSERT INTO team" +
-                "  (name, leader_email, company_id) VALUES " +
-                " (?, ?, ?);";
+        String SELECT_TASK_SQL = "SELECT t.id, t.name, t.description, s.name, t.deadline, t.type, t.repetitive"
+        		+ "FROM task t, skill s, task_skill ts"
+        		+ "WHERE t.company_id = ? and ts.skill_id = s.id and ts.task_id = t.id;";
     	
-    	String SELECT_TEAMid = "SELECT id FROM team WHERE leader_email = ? and company_id = ?";
-    	
-    	String SELECT_SKILLid = "SELECT id FROM skill WHERE name = ? and company_id = ?";    // nu cred ca ii complet ??
-    	
-    	String INSERT_SKILL_SQL = "INSERT INTO team_skill" +
-                "  (team_id, skill_id) VALUES "
-                + " (?, ?);";
+        String UPDATE_TASK_SQL = "UPDATE task SET name = ?, description = ?, deadline = ?, type = ?, repetitive = ?"
+        		+ "WHERE id  = ?";
+        
+        String SELECT_skill = "SELECT id FROM skill WHERE name = ?";
+        
+        String UPDATE_TASKskill = "UPDATE task_skill SET skill_id = ?"
+        		+ "WHERE task_id  = ?";
        
  
         
         int result = 0;
         int companie = 0;
-        Integer id_emp = 0;
+        Integer id_task = 0;
         Integer id_skill = 0;
+        String name = null;
+        String description = null;
+        String taskSkill = null;
+        String deadline = null;
+        String type = null;
+        String repetitive = null;
 
         
         
@@ -53,157 +59,117 @@ public class EditTaskDao {
             }
         
         
-//        try {
-//            // Step 2:Create a statement using connection object
-//            PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_QUERY);
-//            //preparedStatement2.setInt(1, 1);
-//            preparedStatement2.setInt(1, LoginServlet.userID);
-// 
-//            System.out.println(preparedStatement2);
-//            // Step 3: Execute the query or update query
-//            
-//            ResultSet result1 = preparedStatement2.executeQuery();
-//            if (result1.next()) {
-//                companie = result1.getInt(1);
-//            }
-//            
-//
-//            } catch (SQLException e) {
-//                // process sql exception
-//                printSQLException(e);
-//            }
-//        
-//        
-//        try {
-//            
-//            // Step 2:Create a statement using connection object
-//            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_TEAM_SQL);
-//            //preparedStatement.setInt(1, 1);
-//            preparedStatement.setString(1, team.getNumeEchipa());
-//            preparedStatement.setString(2, team.getLiderEchipa());
-//            preparedStatement.setInt(3, companie);
-// 
-//            System.out.println(preparedStatement);
-//            // Step 3: Execute the query or update query
-//            result = preparedStatement.executeUpdate();
-//            
-//            
-//            
-//        } catch (SQLException e) {
-//            // process sql exception
-//            printSQLException(e);
-//        }
+        try {
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_QUERY);
+            //preparedStatement2.setInt(1, 1);
+            preparedStatement2.setInt(1, LoginServlet.userID);
+ 
+            System.out.println(preparedStatement2);
+            // Step 3: Execute the query or update query
+            
+            ResultSet result1 = preparedStatement2.executeQuery();
+            if (result1.next()) {
+                companie = result1.getInt(1);
+            }
+            
+
+            } catch (SQLException e) {
+                // process sql exception
+                printSQLException(e);
+            }
         
-                
-//        try {
-//                // Step 2:Create a statement using connection object
-//                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SKILL_SQL);
-//                preparedStatement.setString(1, employee.getSkill());
-//                preparedStatement.setInt(2, companie);
-//     
-//                System.out.println(preparedStatement);
-//                // Step 3: Execute the query or update query
-//                result = preparedStatement.executeUpdate();
-//           
-//     
-//            } catch (SQLException e) {
-//                // process sql exception
-//                printSQLException(e);
-//            }
-//        
-//        
-//
-//        try {
-//                
-//            // Step 2:Create a statement using connection object
-//            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);
-//            //preparedStatement.setInt(1, 1);
-//            preparedStatement.setString(1, employee.getLastName());
-//            preparedStatement.setString(2, employee.getFirstName());
-//            preparedStatement.setString(3, employee.getBirthDate());
-//            preparedStatement.setString(4, employee.getSex());
-//            preparedStatement.setString(5, employee.getPhone());
-//            preparedStatement.setString(6, employee.getEmail());
-//            preparedStatement.setInt(7, companie);
-//            preparedStatement.setString(8, employee.getJob());
-//            preparedStatement.setString(9, employee.getTeam());
-//            preparedStatement.setString(10, "employee");
-//            preparedStatement.setString(11, password);
-// 
-//            System.out.println(preparedStatement);
-//            // Step 3: Execute the query or update query
-//            result = preparedStatement.executeUpdate();
-//            
-////            SendEmail email = new SendEmail();
-////            System.out.println("EMAIL: " + email);
-//            
-//            
-//        } catch (SQLException e) {
-//            // process sql exception
-//            printSQLException(e);
-//        }
-//        
-//        
-//        
-//        try {
-//            // Step 2:Create a statement using connection object
-//            PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_EMPid);
-//            //preparedStatement2.setInt(1, 1);
-//            preparedStatement2.setString(1, employee.getEmail());
-//            preparedStatement2.setString(2, password);
-// 
-//            System.out.println(preparedStatement2);
-//            // Step 3: Execute the query or update query
-//            ResultSet result1 = preparedStatement2.executeQuery();
-//            if (result1.next()) {
-//                id_emp = result1.getInt(1);
-//            };
-//            
-//            System.out.println("ID_EMP: " + id_emp);
-//       
-//
-//            } catch (SQLException e) {
-//                // process sql exception
-//                printSQLException(e);
-//            }
-//        
-//        
-//        try {
-//            // Step 2:Create a statement using connection object
-//            PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_SKILLid);
-//            //preparedStatement2.setInt(1, 1);
-//            preparedStatement2.setString(1, employee.getSkill());
-//            preparedStatement2.setInt(2, companie);
-// 
-//            System.out.println(preparedStatement2);
-//            // Step 3: Execute the query or update query
-//            ResultSet result1 = preparedStatement2.executeQuery();
-//            if (result1.next()) {
-//                id_skill = result1.getInt(1);
-//            }
-//       
-//
-//            } catch (SQLException e) {
-//                // process sql exception
-//                printSQLException(e);
-//            }
-//        
-//        
-//        try {
-//            // Step 2:Create a statement using connection object
-//            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_EMPLOYEE_SKILL_SQL);
-//            preparedStatement.setInt(1, id_emp);
-//            preparedStatement.setInt(2, id_skill);
-// 
-//            System.out.println(preparedStatement);
-//            // Step 3: Execute the query or update query
-//            result = preparedStatement.executeUpdate();
-//       
-// 
-//        } catch (SQLException e) {
-//            // process sql exception
-//            printSQLException(e);
-//        }
+        
+        try {
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_TASK_SQL);
+            //preparedStatement2.setInt(1, 1);
+            preparedStatement2.setInt(1, LoginServlet.userID);
+ 
+            System.out.println(preparedStatement2);
+            // Step 3: Execute the query or update query
+            
+            ResultSet result1 = preparedStatement2.executeQuery();
+            if (result1.next()) {
+                id_task = result1.getInt(1);
+                name = result1.getString(2);
+                description = result1.getString(3);
+                taskSkill = result1.getString(4);
+                deadline = result1.getString(5);
+                type = result1.getString(6);
+                repetitive = result1.getString(7);
+            }
+            
+
+            } catch (SQLException e) {
+                // process sql exception
+                printSQLException(e);
+            }
+        
+        
+        try {
+            
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TASK_SQL);
+            //preparedStatement.setInt(1, 1);
+            preparedStatement.setString(1, task.getNumeTask());
+            preparedStatement.setString(2, task.getDescriereTask());
+            preparedStatement.setString(3, task.getDeadlineTask());
+            preparedStatement.setString(4, task.getTipTask());
+            preparedStatement.setString(5, task.getRepetitive());
+            preparedStatement.setInt(6, id_task);
+            
+ 
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            result = preparedStatement.executeUpdate();
+ 
+        } catch (SQLException e) {
+            // process sql exception
+            printSQLException(e);
+        }
+           
+        
+        try {
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_skill);
+            //preparedStatement2.setInt(1, 1);
+            preparedStatement2.setString(1, taskSkill);
+ 
+            System.out.println(preparedStatement2);
+            // Step 3: Execute the query or update query
+            
+            ResultSet result1 = preparedStatement2.executeQuery();
+            if (result1.next()) {
+                id_skill = result1.getInt(1);
+            }
+            
+
+            } catch (SQLException e) {
+                // process sql exception
+                printSQLException(e);
+            }
+        
+        
+
+        	try {
+            
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TASKskill);
+            //preparedStatement.setInt(1, 1);
+            preparedStatement.setInt(1, id_skill);
+            preparedStatement.setInt(2, id_task);
+            
+ 
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            result = preparedStatement.executeUpdate();
+ 
+        } catch (SQLException e) {
+            // process sql exception
+            printSQLException(e);
+        }
+      
         
         return result;
     }

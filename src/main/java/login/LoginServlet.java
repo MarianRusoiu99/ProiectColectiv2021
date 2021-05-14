@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
                 request.setAttribute("tip_user",UpperInfoBean.getTip_user());
                 request.setAttribute("companie",UpperInfoBean.getCompanie());
                 request.setAttribute("last_name", profile.getLastName());
-                	System.out.println("FIRST NAME: " + ProfileBean.getLastName());
+                	//System.out.println("FIRST NAME: " + ProfileBean.getLastName());
                 request.setAttribute("first_name",profile.getFirstName());
                 request.setAttribute("job2",profile.getJob());
                 request.setAttribute("sex",profile.getSex());

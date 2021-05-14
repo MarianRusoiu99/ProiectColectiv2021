@@ -1,16 +1,17 @@
 package upper.info;
-
+ 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-//import login.LoginBean;
-
+ 
+import login.LoginBean;
+import login.LoginServlet;
+ 
 public class UpperInfoDao {
-	
+ 
 	public static void info(Integer id) throws ClassNotFoundException {
         boolean status = false;
         //int statusint = 0;
@@ -19,17 +20,19 @@ public class UpperInfoDao {
         String job = "";
         String user_type = "";
         String name = "";
-        String company = "";
+        String company="";
         UpperInfoBean o = new UpperInfoBean();
         //String company_name = "";
         //ArrayList<String> data = new ArrayList<String>();
-        
+ 
         Class.forName("com.mysql.jdbc.Driver");
  
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/task-manager", "root", "admin");
+        try (Connection connection = DriverManager
+                .getConnection("jdbc:mysql://localhost:3307/task-manager", "root", "admin");
  
-            // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement("select e.id,e.last_name, e.first_name, e.job, e.user_type,c.name from `task-manager`.employee e, `task-manager`.company c where e.company_id=c.id having e.id = ? ")) {
+                // Step 2:Create a statement using connection object
+                PreparedStatement preparedStatement = connection
+                        .prepareStatement("select e.id,e.last_name, e.first_name, e.job, e.user_type,c.name from `task-manager`.employee e, `task-manager`.company c where e.company_id=c.id having e.id = ? ")) {
             preparedStatement.setInt(1, id);
  
             System.out.println(preparedStatement);
@@ -37,7 +40,6 @@ public class UpperInfoDao {
             //int id = rs
             //id = rs.getInt("id");
             status = rs.next();
-            
             if(status==true)
             {
             	last_name = rs.getString("e.last_name");
@@ -45,13 +47,14 @@ public class UpperInfoDao {
             	name = last_name + " " + first_name;
             	job = rs.getString("e.job");
             	user_type = rs.getString("e.user_type");
-            	company = rs.getString("c.name");
-            	UpperInfoBean.setNume(name);
-            	UpperInfoBean.setJob(job);
-            	UpperInfoBean.setTip_user(user_type);
-            	UpperInfoBean.setCompanie(company);
+            	company=rs.getString("c.name");
+            	o.setNume(name);
+            	o.setJob(job);
+            	o.setTip_user(user_type);
+            	o.setCompanie(company);
             	//UpperInfoBean.setJob(job);
             	//UpperInfoBean.setTip_user(user_type);
+            	System.out.println("userID: " + LoginServlet.userID);
             }
         } catch (SQLException e) {
             // process sql exception

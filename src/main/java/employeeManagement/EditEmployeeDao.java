@@ -6,25 +6,46 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import login.LoginServlet;
+
 public class EditEmployeeDao {
 
 public int editEmployee (AddEmployeeBean employee) throws ClassNotFoundException {
         
-    	String SELECT_EMPLOYEE = "SELECT e.last_name, e.first_name, e.birth_date, e.sex, e.job, s.name as skill, e.email, e.phone "
+		String SELECT_QUERY = "SELECT company_id FROM employee WHERE id = ?";
+	
+    	String SELECT_EMPLOYEE = "SELECT e.id, e.last_name, e.first_name, e.birth_date, e.sex, e.job, s.name as skill, e.email, e.phone "
     			+ "FROM `task-manager`.`employee` e, `task-manager`.`skill` s, `task-manager`.`employee_skill` es "
-    			+ "WHERE s.id = es.skill_id and e.id = es.employee_id;";
-        
-    	String SELECT_QUERY = "SELECT company_id FROM employee WHERE id = ?";
-    	
-    	String SELECT_EMPid = "SELECT id FROM employee WHERE email = ? and password = ?";
-    	
-        String UPDATE_USERS_SQL = "UPDATE employee SET last_name = ?, first_name = ?, birth_date = ?, sex = ?, phone = ?, email = ?, company_id = ?, job = ?, team_id = ?, user_type = ?, password = ?)"
+    			+ "WHERE s.id = es.skill_id and e.id = es.employee_id and company_id = ?;";    
+
+        String UPDATE_USERS_SQL = "UPDATE employee SET last_name = ?, first_name = ?, birth_date = ?, sex = ?, phone = ?, email = ?, job = ?"
         		+ "WHERE id  = ?";
- 
+        
+        //select pe skill-uri
+        
+        String SELECT_SKILLS = "SELECT id FROM skill WHERE name = ? and company_id = ?";
+        
+        String INSERT_SKILL_SQL = "INSERT INTO skill" +       // pentru adaugare skill nou, cand se face update si skill-ul nu exista
+                "  (name, company_id) VALUES "
+                + " (?, ?);";
+    	
+    	String SELECT_SKILLid = "SELECT id FROM skill WHERE name = ? and company_id = ?";
+    	
+        String UPDATE_EMPLOYEE_SKILL_SQL = "UPDATE employee_skill SET skill_id = ? WHERE employee_id = ?"; //insert
+
         int result = 0;
  
         int companie = 0;
-        String skill = null;
+        int id_emp = 0;
+        int id_skill = 0;
+        String lastName = null;
+        String firstName = null;
+        String birthDate = null;
+        String sex = null;
+        String job = null;
+        String email = null;
+        String phone = null;
+        String skillName = null;
         
         Class.forName("com.mysql.jdbc.Driver");
         
@@ -44,13 +65,43 @@ public int editEmployee (AddEmployeeBean employee) throws ClassNotFoundException
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_QUERY);
             //preparedStatement2.setInt(1, 1);
-            preparedStatement2.setString(1, employee.getCompany());
+            preparedStatement2.setInt(1, LoginServlet.userID);
  
             System.out.println(preparedStatement2);
             // Step 3: Execute the query or update query
             ResultSet result1 = preparedStatement2.executeQuery();
             if (result1.next()) {
                 companie = result1.getInt(1);
+            }
+       
+ 
+            } catch (SQLException e) {
+                // process sql exception
+                printSQLException(e);
+            }
+        
+     
+        
+        
+        try {
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_EMPLOYEE);
+            //preparedStatement2.setInt(1, 1);
+            preparedStatement2.setInt(1, companie);
+ 
+            System.out.println(preparedStatement2);
+            // Step 3: Execute the query or update query
+            ResultSet result1 = preparedStatement2.executeQuery();
+            if (result1.next()) {
+                id_emp = result1.getInt(1);
+                lastName = result1.getString(2);
+                firstName = result1.getString(3);
+                birthDate = result1.getString(4);
+                sex = result1.getString(5);
+                job = result1.getString(6);
+                skillName = result1.getString(7).toLowerCase();
+                email = result1.getString(8);
+                phone = result1.getString(9);
             }
        
  
@@ -72,11 +123,9 @@ public int editEmployee (AddEmployeeBean employee) throws ClassNotFoundException
             preparedStatement.setString(4, employee.getSex());
             preparedStatement.setString(5, employee.getPhone());
             preparedStatement.setString(6, employee.getEmail());
-            preparedStatement.setInt(7, companie);
-            preparedStatement.setString(8, employee.getJob());
-            preparedStatement.setString(9, employee.getTeam());
-            preparedStatement.setString(10, "employee");
-            preparedStatement.setString(11, "");
+            preparedStatement.setString(7, employee.getJob());
+            preparedStatement.setInt(8, id_emp);
+            
  
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
@@ -86,6 +135,89 @@ public int editEmployee (AddEmployeeBean employee) throws ClassNotFoundException
             // process sql exception
             printSQLException(e);
         }
+        
+        
+        try {
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_SKILLS);
+            //preparedStatement2.setInt(1, 1);
+            preparedStatement2.setString(1, skillName.toLowerCase());
+            preparedStatement2.setInt(1, companie);
+ 
+            System.out.println(preparedStatement2);
+            // Step 3: Execute the query or update query
+            ResultSet result1 = preparedStatement2.executeQuery();
+            if (result1.next()) {
+                id_skill = result1.getInt(1);
+            }
+            
+ 
+            } catch (SQLException e) {
+                // process sql exception
+                printSQLException(e);
+            }
+        
+        if(id_skill == 0) {
+        
+        try {
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SKILL_SQL);
+            preparedStatement.setString(1, employee.getSkill());
+            preparedStatement.setInt(2, companie);
+ 
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            result = preparedStatement.executeUpdate();
+       
+ 
+        } catch (SQLException e) {
+            // process sql exception
+            printSQLException(e);
+        }
+        
+        
+        try {
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_SKILLid);
+            //preparedStatement2.setInt(1, 1);
+            preparedStatement2.setString(1, skillName.toLowerCase());
+            preparedStatement2.setInt(2, companie);
+ 
+            System.out.println(preparedStatement2);
+            // Step 3: Execute the query or update query
+            ResultSet result1 = preparedStatement2.executeQuery();
+            if (result1.next()) {
+                id_skill = result1.getInt(1);
+            }
+       
+ 
+            } catch (SQLException e) {
+                // process sql exception
+                printSQLException(e);
+            }
+        }
+        
+        try {
+            
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_EMPLOYEE_SKILL_SQL);
+            //preparedStatement.setInt(1, 1);
+            preparedStatement.setInt(1, id_skill);
+            preparedStatement.setInt(2, id_emp);
+
+            
+ 
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            result = preparedStatement.executeUpdate();
+ 
+        } catch (SQLException e) {
+            // process sql exception
+            printSQLException(e);
+        }
+        
+        
+        
         return result;
     }
     
