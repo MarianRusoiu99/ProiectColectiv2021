@@ -8,6 +8,40 @@
 <link href="CSS/content.css" rel="stylesheet" id="bootstrap-css">
 <link href="CSS/footer.css" rel="stylesheet" id="bootstrap-css">
 
+
+<!--  CSS tabel  -->
+
+
+<style>
+/*table {
+  width:100%;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+#t01 tr:nth-child(even) {
+  background-color: #eee;
+}
+#t01 tr:nth-child(odd) {
+ background-color: #fff;
+}
+#t01 th {
+  background-color: black;
+  color: white;
+}*/
+</style>
+
+
+
+<!--  final CSS  -->
+
+
+
 <title>Insert title here</title>
 </head>
 <% //In case, if Admin session is not set, redirect to Login page
@@ -40,12 +74,12 @@ TheTaskDispatcherApp
 <div style="width: 100%; margin-top:20px;">
 <div id="formContent" style="float:left; left:250px; position:relative;">
 <ul>
-  <li style="border-bottom: 1px solid #555;"><a id="firstnavbar" href="profile.jsp">Profil</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="taskuri.jsp">Taskuri</a></li>
-  <li style="border-bottom: 1px solid #555;"><a class="active" href="#echipa">Echipa</a></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/Profile" method="post"><button type="submit" name="button" value="profil">Profil</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="taskuri">Taskuri</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/echipa" method="post"><button type="submit" name="button" value="echipa">Echipa</button></form></li>
   <li style="border-bottom: 1px solid #555;"><a href="task_suplim.jsp">Taskuri suplimentare</a></li>
   <li style="border-bottom: 1px solid #555;"><a href="tasks_management.jsp">Tasks management</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="employees_management.jsp">Employees management</a></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="employees_management">Employees management</button></form></li>
   <li style="border-bottom: 1px solid #555;"><a href="teams_management.jsp">Teams management</a></li>
   <li style="border-bottom: 1px solid #555;"><a href="organigrama.jsp">Organigrama</a></li>
   <li style="border-bottom: 1px solid #555;"><a href="date_de_contact.jsp">Date de contact</a></li>
@@ -57,9 +91,78 @@ TheTaskDispatcherApp
 -->
 
 <div class="content" align="center" style="min-height: 350px;">
-		<h1>pagina ECHIPA</h1>
+		<!--  <h1>pagina ECHIPA</h1>
 		Welcome <%=request.getAttribute("id2") %>
-		<a href="login.jsp">Log out</a>
+		<a href="login.jsp">Log out</a>  -->
+		
+
+<!-- TABEL -->
+
+<form action="<%= request.getContextPath() %>/echipa" method="post">
+
+<div align="left">
+<h2>Team name: </h2> <%=request.getAttribute("numeEchipa")%>
+</div>
+<p>
+
+<table id="t01" align="center" style="width: 100%">
+  <tr>
+    <th> Position </th>
+    <th> Last Name </th> 
+    <th> First Name </th>
+    <th> Job </th>
+    <th> Availability </th>
+    <th> Email </th>
+    <th> Phone </th>
+  </tr>
+  <tr>
+    <td><%=request.getAttribute("pozitieLider")%></td>
+    <td><%=request.getAttribute("numeLider")%></td>
+    <td><%=request.getAttribute("prenumeLider")%></td>
+    <td><%=request.getAttribute("jobLider")%></td>
+    <td>Available / Unavailable</td>
+    <td><%=request.getAttribute("emailLider")%></td>
+    <td><%=request.getAttribute("telefonLider")%></td>
+  </tr>
+  <tr>
+    <td><%=request.getAttribute("pozitieMembru")%></td>
+    <td><%=request.getAttribute("numeMembru")%></td>
+    <td><%=request.getAttribute("prenumeMembru")%></td>
+    <td><%=request.getAttribute("jobMembru")%></td>
+    <td>Available / Unavailable</td>
+    <td><%=request.getAttribute("emailMembru")%></td>
+    <td><%=request.getAttribute("telefonMembru")%></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+</form>
+
+<div align="left">
+<h2>Number of team tasks: (va urma)</h2> 
+</div>
+
+
+
+<!-- PANA AICI -->		
+		
+
 </div>
 </div>
 <div class="footer">
