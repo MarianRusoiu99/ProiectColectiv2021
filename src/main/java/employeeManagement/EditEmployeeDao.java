@@ -15,7 +15,7 @@ public int editEmployee (AddEmployeeBean employee) throws ClassNotFoundException
 		String SELECT_QUERY = "SELECT company_id FROM employee WHERE id = ?";
 	
     	String SELECT_EMPLOYEE = "SELECT e.id, e.last_name, e.first_name, e.birth_date, e.sex, e.job, s.name as skill, e.email, e.phone "
-    			+ "FROM `task-manager`.`employee` e, `task-manager`.`skill` s, `task-manager`.`employee_skill` es "
+    			+ "FROM employee e, skill s, employee_skill es "
     			+ "WHERE s.id = es.skill_id and e.id = es.employee_id and company_id = ?;";    
 
         String UPDATE_USERS_SQL = "UPDATE employee SET last_name = ?, first_name = ?, birth_date = ?, sex = ?, phone = ?, email = ?, job = ?"

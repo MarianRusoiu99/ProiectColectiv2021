@@ -37,7 +37,6 @@ public class AddEmployeeDao {
                 "  (employee_id, skill_id) VALUES " 
                 + " (?, ?);";
        
- 
         
         int result = 0;
         int companie = 0;

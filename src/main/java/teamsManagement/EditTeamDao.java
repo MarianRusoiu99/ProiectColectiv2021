@@ -22,7 +22,7 @@ public class EditTeamDao {
     	String SELECT_QUERY = "SELECT company_id FROM employee WHERE id = ?";
     	
         String INSERT_TEAM_SQL = "SELECT t.name, t.leader_email, e.email, s.name as skill, ts.skill_id"
-        		+ "FROM `task-manager`.`team` t, `task-manager`.`employee` e, `task-manager`.`skill` s, `task-manager`.`team_skill` ts  "
+        		+ "FROM team t, employee e, skill s, team_skill ts  "
         		+ "WHERE e.team_id = t.id and ts.skill_id = s.id and ts.team_id = t.id and t.company_id = ? "
         		+ "HAVING e.email != t.leader_email and t.id = ?;";
     	

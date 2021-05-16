@@ -32,7 +32,7 @@ public class UpperInfoDao {
  
                 // Step 2:Create a statement using connection object
                 PreparedStatement preparedStatement = connection
-                        .prepareStatement("select e.id,e.last_name, e.first_name, e.job, e.user_type,c.name from `task-manager`.employee e, `task-manager`.company c where e.company_id=c.id having e.id = ? ")) {
+                        .prepareStatement("select e.id, e.last_name, e.first_name, e.job, e.user_type,c.name from employee e, company c where e.company_id=c.id having e.id = ? ")) {
             preparedStatement.setInt(1, id);
  
             System.out.println(preparedStatement);
