@@ -12,13 +12,35 @@ public class AddEmployeeBean implements Serializable {
     private String birthDate;
     private String sex;
     private String job;
-    private String email;
-    private String phone;
-    private String team; 
-    private String company;
-    private String password;
     private String skill;
+    private String email;  
+    private String phone;
+    private String password;
+	private String team; 
+    private String company;
     
+    
+    public AddEmployeeBean(String lastName, String firstName, String birthDate, String sex, String job, String skill,
+			String email, String phone) {
+		super();
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.birthDate = birthDate;
+		this.sex = sex;
+		this.job = job;
+		this.skill = skill;
+		this.email = email;
+		this.phone = phone;
+	}
+    
+    
+    
+	public AddEmployeeBean() {
+		super();
+	}
+
+
+
 	public String getSkill() {
 		return skill;
 	}

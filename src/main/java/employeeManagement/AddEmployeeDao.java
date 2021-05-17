@@ -8,6 +8,8 @@ import java.sql.SQLException;
 
 import login.LoginServlet;
 import passwordGenerator.PasswordGenerator;
+import sendMail.SendEmail;
+
 
  
 public class AddEmployeeDao {
@@ -40,9 +42,17 @@ public class AddEmployeeDao {
         int companie = 0;
         Integer id_emp = 0;
         Integer id_skill = 0;
-        String pswd = null;
-        pswd = PasswordGenerator.generate(8);
-        //System.out.println("PAROLA RANDOM: " + pswd);
+//        String pswd = null;
+//        pswd = PasswordGenerator.generate(8);
+//        System.out.println("PAROLA RANDOM: " + pswd);
+        
+        
+        PasswordGenerator passwordGenerator = new PasswordGenerator.PasswordGeneratorBuilder()
+                .useDigits(true)
+                .useLower(true)
+                .useUpper(true)
+                .build();
+        String password = passwordGenerator.generate(8);
         
         
         Class.forName("com.mysql.jdbc.Driver");
@@ -118,12 +128,16 @@ public class AddEmployeeDao {
             preparedStatement.setString(8, employee.getJob());
             preparedStatement.setString(9, employee.getTeam());
             preparedStatement.setString(10, "employee");
-            preparedStatement.setString(11, "abcd");
+            preparedStatement.setString(11, password);
  
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             result = preparedStatement.executeUpdate();
- 
+            
+//            SendEmail email = new SendEmail();
+//            System.out.println("EMAIL: " + email);
+            
+            
         } catch (SQLException e) {
             // process sql exception
             printSQLException(e);
@@ -136,7 +150,7 @@ public class AddEmployeeDao {
             PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_EMPid);
             //preparedStatement2.setInt(1, 1);
             preparedStatement2.setString(1, employee.getEmail());
-            preparedStatement2.setString(2, employee.getPassword());
+            preparedStatement2.setString(2, password);
  
             System.out.println(preparedStatement2);
             // Step 3: Execute the query or update query
@@ -144,6 +158,8 @@ public class AddEmployeeDao {
             if (result1.next()) {
                 id_emp = result1.getInt(1);
             };
+            
+            System.out.println("ID_EMP: " + id_emp);
        
 
             } catch (SQLException e) {
