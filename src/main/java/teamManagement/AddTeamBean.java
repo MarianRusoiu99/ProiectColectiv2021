@@ -13,6 +13,21 @@ public class AddTeamBean implements Serializable{
 	private String membruEchipa;
 	private String skillEchipa;
 	
+	
+	
+	
+	public AddTeamBean(String numeEchipa, String liderEchipa, String membruEchipa, String skillEchipa) {
+		super();
+		this.numeEchipa = numeEchipa;
+		this.liderEchipa = liderEchipa;
+		this.membruEchipa = membruEchipa;
+		this.skillEchipa = skillEchipa;
+	}
+	
+	public AddTeamBean() {
+		super();
+	}
+
 	public String getNumeEchipa() {
 		return numeEchipa;
 	}

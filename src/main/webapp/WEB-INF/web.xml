@@ -13,6 +13,6 @@
    </context-param>
    <context-param>
     <param-name>tempfile.dir</param-name>
-    <param-value>tmpfiles</param-value>
+    <param-value>tempfiles</param-value>
   </context-param>
 </web-app>

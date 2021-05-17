@@ -96,6 +96,15 @@ TheTaskDispatcherApp
   </form>
  </div>
 </td>
+
+
+<form action = "<%= request.getContextPath() %>/teamManagementCsv" method = "post" enctype = "multipart/form-data" style="align-content = center;">
+		<h1>Upload via csv</h1>
+         <input type = "file" name = "fileName" size = "50" value = "import via CSV"/>
+         <br />
+         <input type = "submit" value = "Upload File" />
+         <p id = "csvupload"></p>
+</form>
  
 <!-- A DOUA COLOANA -->
 <td>

@@ -19,6 +19,21 @@ public class AddTaskBean implements Serializable{
 	private String contactEmail;
 	
 	
+	
+	public AddTaskBean() {
+		super();
+	}
+	public AddTaskBean(String numeTask, String descriereTask, String tehnologiiTask, String deadlineTask,
+			String tipTask, String repetitive, String slaTask) {
+		super();
+		this.numeTask = numeTask;
+		this.descriereTask = descriereTask;
+		this.tehnologiiTask = tehnologiiTask;
+		this.deadlineTask = deadlineTask;
+		this.tipTask = tipTask;
+		this.repetitive = repetitive;
+		this.slaTask = slaTask;
+	}
 	public String getContactEmail() {
 		return contactEmail;
 	}
