@@ -34,8 +34,8 @@ import employeeManagement.*;
 import java.util.regex.*;
 
 
-@WebServlet("/UploadDownloadFileServlet")
-public class UploadDownloadFileServlet extends HttpServlet {
+@WebServlet("/employeeManagementCsv")
+public class employeeManagementCsv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ServletFileUpload uploader = null;
     
@@ -109,22 +109,23 @@ public class UploadDownloadFileServlet extends HttpServlet {
 		            r.forEach(x -> {
 		            	
 		          //  System.out.println(x.toString());
-		            Pattern date_pattern = Pattern.compile( "((?:19|20)[0-9][0-9])-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])", Pattern.CASE_INSENSITIVE);
-		            Matcher date_matcher = date_pattern.matcher(x[2]);
-		            
-		            Pattern email_pattern = Pattern.compile( "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-		            Matcher email_matcher = email_pattern.matcher(x[6]);
-		            
-		            Pattern phone_pattern = Pattern.compile( "^\\d{10}$", Pattern.CASE_INSENSITIVE);
-		            Matcher phone_matcher = phone_pattern.matcher(x[6]);
-		            
-		            
-		            if(date_matcher.find()&&email_matcher.find()&&phone_matcher.find()) {
+//		            Pattern date_pattern = Pattern.compile( "((?:19|20)[0-9][0-9])-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])", Pattern.CASE_INSENSITIVE);
+//		            Matcher date_matcher = date_pattern.matcher(x[2]);
+//		            
+//		            Pattern email_pattern = Pattern.compile( "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+//		            Matcher email_matcher = email_pattern.matcher(x[6]);
+//		            
+//		            Pattern phone_pattern = Pattern.compile( "^\\d{10}$", Pattern.CASE_INSENSITIVE);
+//		            Matcher phone_matcher = phone_pattern.matcher(x[6]);
+//		            
+//		            
+//		            if(date_matcher.find()&&email_matcher.find()&&phone_matcher.find()) {
+     	            System.out.println("succes csv");
 		            employeelist.add(new AddEmployeeBean(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7]));
-		            }
-		            else {
-		            	System.out.println("csv invalid");
-		            }
+//		            }
+//		            else {
+//		            	System.out.println("csv invalid");
+//		            }
 		            
 		            });
 		            
