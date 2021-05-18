@@ -1,7 +1,9 @@
 package echipa;
 
 import java.io.IOException;
- 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,7 +49,7 @@ public class EchipaServlet extends HttpServlet {
         session.setAttribute("id1", LoginServlet.userID); //ce dracu esti tu ???
         request.setAttribute("id2", LoginServlet.userID);
         
-        EchipaBean echipa = new EchipaBean();
+        List<EchipaBean> echipa = new ArrayList<EchipaBean>();
         try {
 			echipa = EchipaDao.viewTeam();
 		} catch (ClassNotFoundException e1) {
@@ -66,21 +68,31 @@ public class EchipaServlet extends HttpServlet {
         request.setAttribute("tip_user",UpperInfoBean.getTip_user());
         request.setAttribute("companie",UpperInfoBean.getCompanie());
         
-        request.setAttribute("numeMembru", echipa.getNumeMembru());
-        request.setAttribute("prenumeMembru",echipa.getPrenumeMembru());
-        request.setAttribute("jobMembru",echipa.getJobMembru());
-        request.setAttribute("emailMembru",echipa.getEmailMembru());
-        request.setAttribute("telefonMembru",echipa.getTelefonMembru());
-        request.setAttribute("pozitieMembru",echipa.getPozitieMembru());
+        request.setAttribute("numeMembru1", echipa.get(0).getNumeMembru());
+        System.out.println("NUME MEMBRU: " + echipa.get(0).getNumeMembru());
+        request.setAttribute("prenumeMembru1",echipa.get(0).getPrenumeMembru());
+        System.out.println("PRENUME MEMBRU: " + echipa.get(0).getNumeMembru());
+        request.setAttribute("jobMembru1",echipa.get(0).getJobMembru());
+        request.setAttribute("emailMembru1",echipa.get(0).getEmailMembru());
+        request.setAttribute("telefonMembru1",echipa.get(0).getTelefonMembru());
+        request.setAttribute("pozitieMembru1",echipa.get(0).getPozitieMembru());
         
-        request.setAttribute("numeEchipa",echipa.getNumeEchipa());
         
-        request.setAttribute("numeLider",echipa.getNumeLider());
-        request.setAttribute("prenumeLider",echipa.getPrenumeLider());
-        request.setAttribute("jobLider",echipa.getJobLider());
-        request.setAttribute("emailLider",echipa.getEmailLider());
-        request.setAttribute("telefonLider",echipa.getTelefonLider());
-        request.setAttribute("pozitieLider",echipa.getPozitieLider());
+        request.setAttribute("numeMembru2", echipa.get(1).getNumeMembru());
+        request.setAttribute("prenumeMembru2",echipa.get(1).getPrenumeMembru());
+        request.setAttribute("jobMembru2",echipa.get(1).getJobMembru());
+        request.setAttribute("emailMembru2",echipa.get(1).getEmailMembru());
+        request.setAttribute("telefonMembru2",echipa.get(1).getTelefonMembru());
+        request.setAttribute("pozitieMembru2",echipa.get(1).getPozitieMembru());
+        
+        request.setAttribute("numeEchipa",echipa.get(0).getNumeEchipa());
+        
+//        request.setAttribute("numeLider",echipa.getNumeLider());
+//        request.setAttribute("prenumeLider",echipa.getPrenumeLider());
+//        request.setAttribute("jobLider",echipa.getJobLider());
+//        request.setAttribute("emailLider",echipa.getEmailLider());
+//        request.setAttribute("telefonLider",echipa.getTelefonLider());
+//        request.setAttribute("pozitieLider",echipa.getPozitieLider());
         
         request.getRequestDispatcher("echipa.jsp").forward(request, response);
         //response.sendRedirect("profile.jsp");
@@ -98,7 +110,7 @@ public class EchipaServlet extends HttpServlet {
             request.setAttribute("job",UpperInfoBean.getJob());
             request.setAttribute("tip_user",UpperInfoBean.getTip_user());
             request.setAttribute("companie",UpperInfoBean.getCompanie());
-            request.getRequestDispatcher("echipa.jsp").forward(request, response);
+            //request.getRequestDispatcher("echipa.jsp").forward(request, response);
             
         } catch (Exception e) {
             // TODO Auto-generated catch block

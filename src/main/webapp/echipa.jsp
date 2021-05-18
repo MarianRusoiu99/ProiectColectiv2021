@@ -116,22 +116,22 @@ TheTaskDispatcherApp
     <th> Phone </th>
   </tr>
   <tr>
-    <td><%=request.getAttribute("pozitieLider")%></td>
-    <td><%=request.getAttribute("numeLider")%></td>
-    <td><%=request.getAttribute("prenumeLider")%></td>
-    <td><%=request.getAttribute("jobLider")%></td>
+    <td><%=request.getAttribute("pozitieMembru1")%></td>
+    <td><%=request.getAttribute("numeMembru1")%></td>
+    <td><%=request.getAttribute("prenumeMembru1")%></td>
+    <td><%=request.getAttribute("jobMembru1")%></td>
     <td>Available / Unavailable</td>
-    <td><%=request.getAttribute("emailLider")%></td>
-    <td><%=request.getAttribute("telefonLider")%></td>
+    <td><%=request.getAttribute("emailMembru1")%></td>
+    <td><%=request.getAttribute("telefonMembru1")%></td>
   </tr>
   <tr>
-    <td><%=request.getAttribute("pozitieMembru")%></td>
-    <td><%=request.getAttribute("numeMembru")%></td>
-    <td><%=request.getAttribute("prenumeMembru")%></td>
-    <td><%=request.getAttribute("jobMembru")%></td>
+    <td><%=request.getAttribute("pozitieMembru2")%></td>
+    <td><%=request.getAttribute("numeMembru2")%></td>
+    <td><%=request.getAttribute("prenumeMembru2")%></td>
+    <td><%=request.getAttribute("jobMembru2")%></td>
     <td>Available / Unavailable</td>
-    <td><%=request.getAttribute("emailMembru")%></td>
-    <td><%=request.getAttribute("telefonMembru")%></td>
+    <td><%=request.getAttribute("emailMembru2")%></td>
+    <td><%=request.getAttribute("telefonMembru2")%></td>
   </tr>
   <tr>
     <td></td>
