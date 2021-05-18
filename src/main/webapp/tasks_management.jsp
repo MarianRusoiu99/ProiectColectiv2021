@@ -77,34 +77,57 @@ TheTaskDispatcherApp
      <td>Task Name</td>
      <td><input type="text" name="numeTask" /></td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>Description</td>
      <td><input type="text" name="descriereTask" /></td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>Technology</td>
-     <td><input type="text" name="tehnologiiTask" /></td>
+     <td><input type="text" name="tehnologiiTask1" /></td>
     </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="tehnologiiTask2" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="tehnologiiTask3" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="tehnologiiTask4" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="tehnologiiTask5" /></td>
+    </tr>
+    <tr height=10px></tr>
     <tr>
      <td style="text-align:right;padding-right:10px;">Deadline</td>
      <td><input type="date" class="fadeIn second" name="deadlineTask"></td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>Type</td>
      <td><input type="radio" name="tipTask" value="echipa" required>Echipa
          <input type="radio" name="tipTask" value="individual" required>Individual
      </td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>Repetitive</td>
      <td><input type="radio" name="repetitive" value="Yes" required>Yes
          <input type="radio" name="repetitive" value="No" required>No
      </td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>SLA</td>
      <td><input type="text" name="slaTask" /></td>
     </tr>
+    <tr height=10px></tr>
    </table>
    <input type="submit" value="Add task" />
   </form>

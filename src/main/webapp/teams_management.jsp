@@ -10,6 +10,7 @@
 <link href="CSS/footer.css" rel="stylesheet" id="bootstrap-css">
 
 <title>Insert title here</title>
+
 </head>
 <% //In case, if Admin session is not set, redirect to Login page
 if((request.getSession(false).getAttribute("id1")== null))
@@ -79,18 +80,54 @@ TheTaskDispatcherApp
      <td>Team Name</td>
      <td><input type="text" name="numeEchipa" /></td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>Team Leader (email)</td>
      <td><input type="text" name="liderEchipa" /></td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>Team Members</td>
-     <td><input type="text" name="membruEchipa" /></td>
+     <td><input type="text" name="membru1Echipa" /></td>
     </tr>
     <tr>
-     <td>Team Skills</td>
-     <td><input type="text" name="skillEchipa" /></td>
+     <td></td>
+     <td><input type="text" name="membru2Echipa" /></td>
     </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="membru3Echipa" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="membru4Echipa" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="membru5Echipa" /></td>
+    </tr>
+    <tr height=10px></tr>
+    <tr>
+     <td>Team Skills</td>
+     <td><input type="text" name="skill1Echipa" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="skill2Echipa" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="skill3Echipa" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="skill4Echipa" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="skill5Echipa" /></td>
+    </tr>
+    <tr height=10px></tr>
    </table>
    <input type="submit" value="Add team" />
   </form>

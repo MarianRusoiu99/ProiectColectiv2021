@@ -100,14 +100,17 @@ TheTaskDispatcherApp
      <td>Last Name</td>
      <td><input type="text" name="lastName" /></td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>First Name</td>
      <td><input type="text" name="firstName" /></td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>Birth Date</td>
      <td><input type="date" class="fadeIn second" name="birthDate"></td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>Gender</td>
      <td><input type="radio" name="sex" value="M" required>Male
@@ -115,22 +118,43 @@ TheTaskDispatcherApp
          <input type="radio" name="sex" value="O" required>Other
      </td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>Job</td>
      <td><input type="text" name="job" /></td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>Skills</td>
-     <td><input type="text" name="skills" /></td>
+     <td><input type="text" name="skills1" /></td>
     </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="skills2" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="skills3" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="skills4" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="skills5" /></td>
+    </tr>
+    <tr height=10px></tr>
     <tr>
      <td>Email</td>
      <td><input type="text" name="email" /></td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>Phone</td>
      <td><input type="text" name="phone" /></td>
     </tr>
+    <tr height=10px></tr>
    </table>
    <input type="submit" value="Add employee" />
   </form>
