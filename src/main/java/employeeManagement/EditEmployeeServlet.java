@@ -47,7 +47,7 @@ public class EditEmployeeServlet extends HttpServlet {
         String birthDate = request.getParameter("birthDate");
         String sex = request.getParameter("sex");
         String job = request.getParameter("job");
-        String skill = request.getParameter("skills");
+        String skill = request.getParameter("skills1");
         String email = request.getParameter("email");
         //String company = request.getParameter("company");
         //String position = request.getParameter("position");

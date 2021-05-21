@@ -1,7 +1,9 @@
 package teamsManagement;
 
 import java.io.IOException;
- 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,18 +39,32 @@ public class AddTeamServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
  
+    	List<String> skills = new ArrayList<String>();
+    	List<String> membrii = new ArrayList<String>();
+    	
     	
         String numeEchipa = request.getParameter("numeEchipa");
         String liderEchipa = request.getParameter("liderEchipa");
-        String membruEchipa = request.getParameter("membruEchipa");
-        String skillEchipa = request.getParameter("skillEchipa");
+        //String membruEchipa = request.getParameter("membru1Echipa");
+        //String skillEchipa = request.getParameter("skill1Echipa");
+        skills.add(request.getParameter("skill1Echipa"));
+        skills.add(request.getParameter("skill2Echipa"));
+        skills.add(request.getParameter("skill3Echipa"));
+        skills.add(request.getParameter("skill4Echipa"));
+        skills.add(request.getParameter("skill5Echipa"));
+        
+        membrii.add(request.getParameter("membru1Echipa"));
+        membrii.add(request.getParameter("membru2Echipa"));
+        membrii.add(request.getParameter("membru3Echipa"));
+        membrii.add(request.getParameter("membru4Echipa"));
+        membrii.add(request.getParameter("membru5Echipa"));
  
         AddTeamBean team = new AddTeamBean();
         
         team.setNumeEchipa(numeEchipa);
         team.setLiderEchipa(liderEchipa);
-        team.setMembruEchipa(membruEchipa);
-        team.setSkillEchipa(skillEchipa);
+        team.setMembrii(membrii);
+        team.setSkills(skills);
         
         
         try {

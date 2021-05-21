@@ -1,6 +1,7 @@
 package employeeManagement;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class AddEmployeeBean implements Serializable {
     /**
@@ -18,7 +19,18 @@ public class AddEmployeeBean implements Serializable {
     private String company;
     private String password;
     private String skill;
+    private List<String> skills;
     
+    
+    
+	public List<String> getSkills() {
+		return skills;
+	}
+
+	public void setSkills(List<String> skills) {
+		this.skills = skills;
+	}
+
 	public String getSkill() {
 		return skill;
 	}

@@ -2,7 +2,9 @@ package employeeManagement;
 
 
 import java.io.IOException;
- 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,18 +46,20 @@ public class AddEmployeeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
  
+    	List<String> skills = new ArrayList<String>();
     	
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String birthDate = request.getParameter("birthDate");
         String sex = request.getParameter("sex");
         String job = request.getParameter("job");
-        String skill = request.getParameter("skills");
+        skills.add(request.getParameter("skills1"));
+        skills.add(request.getParameter("skills2"));
+        skills.add(request.getParameter("skills3"));
+        skills.add(request.getParameter("skills4"));
+        skills.add(request.getParameter("skills5"));
         String email = request.getParameter("email");
-        //String company = request.getParameter("company");
-        //String position = request.getParameter("position");
         String phone = request.getParameter("phone");
-        //String password = request.getParameter("password");
  
         AddEmployeeBean employee = new AddEmployeeBean();
         
@@ -64,12 +68,9 @@ public class AddEmployeeServlet extends HttpServlet {
         employee.setBirthDate(birthDate);
         employee.setSex(sex);
         employee.setJob(job);
-        employee.setSkill(skill);
+        employee.setSkills(skills);
         employee.setEmail(email);
-        //employee.setCompany(company);
-        //employee.setPosition(position);
         employee.setPhone(phone);
-        //employee.setPassword(password);
         
         
         try {

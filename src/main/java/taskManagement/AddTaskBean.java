@@ -1,6 +1,7 @@
 package taskManagement;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class AddTaskBean implements Serializable{
 	
@@ -17,8 +18,16 @@ public class AddTaskBean implements Serializable{
 	private String slaTask;
 	private String status;
 	private String contactEmail;
+	private List<String> tehnologii;
 	
 	
+	
+	public List<String> getTehnologii() {
+		return tehnologii;
+	}
+	public void setTehnologii(List<String> tehnologii) {
+		this.tehnologii = tehnologii;
+	}
 	public String getContactEmail() {
 		return contactEmail;
 	}

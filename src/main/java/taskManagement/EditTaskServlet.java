@@ -40,7 +40,7 @@ public class EditTaskServlet extends HttpServlet {
     	
         String numeTask = request.getParameter("numeTask");
         String descriereTask = request.getParameter("descriereTask");
-        String tehnologiiTask = request.getParameter("tehnologiiTask");
+        String tehnologiiTask = request.getParameter("tehnologiiTask1");
         String deadlineTask = request.getParameter("deadlineTask");
         String tipTask = request.getParameter("tipTask");
         String repetitive = request.getParameter("repetitive");

@@ -2,7 +2,9 @@ package taskManagement;
 
 
 import java.io.IOException;
- 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,24 +40,28 @@ public class AddTaskServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
  
+    	List<String> tehnologii = new ArrayList<String>();
     	
         String numeTask = request.getParameter("numeTask");
         String descriereTask = request.getParameter("descriereTask");
-        String tehnologiiTask = request.getParameter("tehnologiiTask");
         String deadlineTask = request.getParameter("deadlineTask");
         String tipTask = request.getParameter("tipTask");
         String repetitive = request.getParameter("repetitive");
+        tehnologii.add(request.getParameter("tehnologiiTask1"));
+        tehnologii.add(request.getParameter("tehnologiiTask2"));
+        tehnologii.add(request.getParameter("tehnologiiTask3"));
+        tehnologii.add(request.getParameter("tehnologiiTask4"));
+        tehnologii.add(request.getParameter("tehnologiiTask5"));
         //String slaTask = request.getParameter("slaTask");
  
         AddTaskBean task = new AddTaskBean();
         
         task.setNumeTask(numeTask);
         task.setDescriereTask(descriereTask);
-        task.setTehnologiiTask(tehnologiiTask);
+        task.setTehnologii(tehnologii);
         task.setDeadlineTask(deadlineTask);
         task.setTipTask(tipTask);
         task.setRepetitive(repetitive);
-        //task.setSlaTask(slaTask);
         
         
         try {

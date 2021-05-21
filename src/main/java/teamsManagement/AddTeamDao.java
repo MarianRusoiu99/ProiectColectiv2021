@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import login.LoginServlet;
-//import passwordGenerator.PasswordGenerator;
-//import sendMail.SendEmail;
+
+import employeeManagement.AddEmployeeDao;
 
 
  
@@ -33,7 +33,7 @@ public class AddTeamDao {
                 "  (team_id, skill_id) VALUES "
                 + " (?, ?);";
     	
-    	String UPDATE_TEAMemp = "UPDATE employee SET team_id = ? WHERE email = ?";
+    	String UPDATE_TEAMemp = "UPDATE employee SET team_id = ? WHERE email = ? and company_id = ?";
 
     	
  
@@ -150,14 +150,20 @@ public class AddTeamDao {
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_TEAMskill_SQL);
             //preparedStatement.setInt(1, 1);
-            preparedStatement.setInt(1, id_team);
-            preparedStatement.setInt(2, id_skill);
+            for (String x : team.getSkills()) {
+            	
+                if(x != "") {
+                	
+                	id_skill = AddEmployeeDao.verifySkill(x, companie);
+		            preparedStatement.setInt(1, id_team);
+		            preparedStatement.setInt(2, id_skill);
  
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             result = preparedStatement.executeUpdate();
             
-
+                }
+            }
             
         } catch (SQLException e) {
             // process sql exception
@@ -191,14 +197,19 @@ public class AddTeamDao {
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TEAMemp);
             //preparedStatement.setInt(1, 1);
-            preparedStatement.setInt(1, id_team);
-            preparedStatement.setString(2, team.getMembruEchipa());
- 
-            System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
-            result = preparedStatement.executeUpdate();
+            for (String x : team.getMembrii()) {
+            	
+                if(x != "") {
+		            preparedStatement.setInt(1, id_team);
+		            preparedStatement.setString(2, x);
+		            preparedStatement.setInt(3, companie);
+		 
+		            System.out.println(preparedStatement);
+		            // Step 3: Execute the query or update query
+		            result = preparedStatement.executeUpdate();
             
-
+                }
+            }
             
         } catch (SQLException e) {
             // process sql exception

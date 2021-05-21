@@ -23,9 +23,9 @@ public class EchipaDao {
         
     	String SELECT_QUERY = "SELECT company_id FROM employee WHERE id = ?";
     	
-    	String SELECT_TEAMid = "SELECT t.id, t.name FROM `task-manager`.`team` t, `task-manager`.`employee` e WHERE e.id = ? and e.company_id = ? and t.id = e.team_id;";
+    	String SELECT_TEAMid = "SELECT t.id, t.name FROM team t, employee e WHERE e.id = ? and e.company_id = ? and t.id = e.team_id;";
     	
-    	String SELECT_TEAM = "SELECT id, last_name, first_name, job, email, phone FROM `task-manager`.`employee` WHERE team_id = ?;";
+    	String SELECT_TEAM = "SELECT id, last_name, first_name, job, email, phone FROM employee WHERE team_id = ?;";
     	
     	List<EchipaBean> echipa = new ArrayList<EchipaBean>();
     	
@@ -121,9 +121,8 @@ public class EchipaDao {
                 printSQLException(e);
             }
         
-        
-        
-        
+        if(id_team != 0) {
+
         try {
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_TEAM);
@@ -156,6 +155,7 @@ public class EchipaDao {
                 membru.setJobMembru(jobMembru);
                 membru.setEmailMembru(emailMembru);
                 membru.setTelefonMembru(telefonMembru);
+                membru.setId_team(id_team);
                 membru.setPozitieMembru("Member");
                 
                 echipa.add(membru);
@@ -167,6 +167,14 @@ public class EchipaDao {
                 // process sql exception
                 printSQLException(e);
             }
+        
+        } else {
+        	
+        	//EchipaServlet.infoBox("YOUR INFORMATION HERE", "TITLE BAR MESSAGE");
+        	
+        	System.out.println(" --------- Utilizatorul nu face parte din vreo echipa -----------");
+        	
+        }
         
         return echipa;
     }

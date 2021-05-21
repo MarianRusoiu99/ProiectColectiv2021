@@ -40,8 +40,8 @@ public class EditTeamServlet extends HttpServlet {
     	
         String numeEchipa = request.getParameter("numeEchipa");
         String liderEchipa = request.getParameter("liderEchipa");
-        String membruEchipa = request.getParameter("membruEchipa");
-        String skillEchipa = request.getParameter("skillEchipa");
+        String membruEchipa = request.getParameter("membru1Echipa");
+        String skillEchipa = request.getParameter("skill1Echipa");
  
         AddTeamBean team = new AddTeamBean();
         

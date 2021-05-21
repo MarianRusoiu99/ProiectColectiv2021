@@ -21,6 +21,7 @@ public class EchipaBean implements Serializable{
 	public String emailLider;
 	
 	
+	public int id_team;
 	
 	
 	public String numeLider;
@@ -31,6 +32,12 @@ public class EchipaBean implements Serializable{
     
     
 	
+	public int getId_team() {
+		return id_team;
+	}
+	public void setId_team(int id_team) {
+		this.id_team = id_team;
+	}
 	public String getPozitieLider() {
 		return pozitieLider;
 	}
