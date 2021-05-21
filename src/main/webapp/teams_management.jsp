@@ -42,13 +42,13 @@ TheTaskDispatcherApp
 <div style="width: 100%; margin-top:20px;">
 <div id="formContent" style="float:left; left:250px; position:relative;">
 <ul>
-  <li style="border-bottom: 1px solid #555;"><a id="firstnavbar" href="profile.jsp">Profil</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="taskuri.jsp">Taskuri</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="echipa.jsp">Echipa</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="task_suplim.jsp">Taskuri suplimentare</a></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/Profile" method="post"><button type="submit" name="button" value="profil">Profil</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="taskuri">Taskuri</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/echipa" method="post"><button type="submit" name="button" value="echipa">Echipa</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/task" method="post"><button type="submit" name="button" value="task_suplim">Taskuri suplimentare</button></form></li>
   <li style="border-bottom: 1px solid #555;"><a href="tasks_management.jsp">Tasks management</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="employees_management.jsp">Employees management</a></li>
-  <li style="border-bottom: 1px solid #555;"><a class="active" href="#teams_management">Teams management</a></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="employees_management">Employees management</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><a href="teams_management.jsp">Teams management</a></li>
   <li style="border-bottom: 1px solid #555;"><a href="organigrama.jsp">Organigrama</a></li>
   <li style="border-bottom: 1px solid #555;"><a href="date_de_contact.jsp">Date de contact</a></li>
   <li style="border-bottom: none;"><a id="lastnavbar" href="login.jsp">Log Out</a></li>
@@ -158,18 +158,54 @@ TheTaskDispatcherApp
      <td>Team Name</td>
      <td><input type="text" name="numeEchipa" /></td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>Team Leader (email)</td>
      <td><input type="text" name="liderEchipa" /></td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>Team Members</td>
-     <td><input type="text" name="membruEchipa" /></td>
+     <td><input type="text" name="membru1Echipa" /></td>
     </tr>
     <tr>
-     <td>Team Skills</td>
-     <td><input type="text" name="skillEchipa" /></td>
+     <td></td>
+     <td><input type="text" name="membru2Echipa" /></td>
     </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="membru3Echipa" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="membru4Echipa" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="membru5Echipa" /></td>
+    </tr>
+    <tr height=10px></tr>
+    <tr>
+     <td>Team Skills</td>
+     <td><input type="text" name="skill1Echipa" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="skill2Echipa" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="skill3Echipa" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="skill4Echipa" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="skill5Echipa" /></td>
+    </tr>
+    <tr height=10px></tr>
    </table>
    <input type="submit" value="Update team" />
   </form>

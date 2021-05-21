@@ -77,7 +77,7 @@ TheTaskDispatcherApp
   <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/Profile" method="post"><button type="submit" name="button" value="profil">Profil</button></form></li>
   <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="taskuri">Taskuri</button></form></li>
   <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/echipa" method="post"><button type="submit" name="button" value="echipa">Echipa</button></form></li>
-  <li style="border-bottom: 1px solid #555;"><a href="task_suplim.jsp">Taskuri suplimentare</a></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/task" method="post"><button type="submit" name="button" value="task_suplim">Taskuri suplimentare</button></form></li>
   <li style="border-bottom: 1px solid #555;"><a href="tasks_management.jsp">Tasks management</a></li>
   <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="employees_management">Employees management</button></form></li>
   <li style="border-bottom: 1px solid #555;"><a href="teams_management.jsp">Teams management</a></li>
@@ -99,6 +99,7 @@ TheTaskDispatcherApp
 <!-- TABEL -->
 
 <form action="<%= request.getContextPath() %>/echipa" method="post">
+<h1> MY TEAM </h1>
 
 <div align="left">
 <h2>Team name: </h2> <%=request.getAttribute("numeEchipa")%>
@@ -115,6 +116,8 @@ TheTaskDispatcherApp
     <th> Email </th>
     <th> Phone </th>
   </tr>
+  
+
   <tr>
     <td><%=request.getAttribute("pozitieMembru1")%></td>
     <td><%=request.getAttribute("numeMembru1")%></td>
@@ -133,31 +136,15 @@ TheTaskDispatcherApp
     <td><%=request.getAttribute("emailMembru2")%></td>
     <td><%=request.getAttribute("telefonMembru2")%></td>
   </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
+  
+
 </table>
+
 </form>
 
 <div align="left">
 <h2>Number of team tasks: (va urma)</h2> 
 </div>
-
 
 
 <!-- PANA AICI -->		

@@ -40,12 +40,12 @@ TheTaskDispatcherApp
 <div style="width: 100%; margin-top:20px;">
 <div id="formContent" style="float:left; left:250px; position:relative;">
 <ul>
-  <li style="border-bottom: 1px solid #555;"><a id="firstnavbar" href="profile.jsp">Profil</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="taskuri.jsp">Taskuri</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="echipa.jsp">Echipa</a></li>
-  <li style="border-bottom: 1px solid #555;"><a class="active" href="#task_suplim">Taskuri suplimentare</a></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/Profile" method="post"><button type="submit" name="button" value="profil">Profil</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="taskuri">Taskuri</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/echipa" method="post"><button type="submit" name="button" value="echipa">Echipa</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/task" method="post"><button type="submit" name="button" value="task_suplim">Taskuri suplimentare</button></form></li>
   <li style="border-bottom: 1px solid #555;"><a href="tasks_management.jsp">Tasks management</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="employees_management.jsp">Employees management</a></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="employees_management">Employees management</button></form></li>
   <li style="border-bottom: 1px solid #555;"><a href="teams_management.jsp">Teams management</a></li>
   <li style="border-bottom: 1px solid #555;"><a href="organigrama.jsp">Organigrama</a></li>
   <li style="border-bottom: 1px solid #555;"><a href="date_de_contact.jsp">Date de contact</a></li>
@@ -57,9 +57,47 @@ TheTaskDispatcherApp
 -->
 
 <div class="content" align="center" style="min-height: 350px;">
-		<h1>pagina TASKURI SUPLIMENTARE</h1>
+		<!-- <h1>pagina TASKURI SUPLIMENTARE</h1>
 		Welcome <%=request.getAttribute("id2") %>
-		<a href="login.jsp">Log out</a>
+		<a href="login.jsp">Log out</a> -->
+		
+		
+<!-- TABEL -->
+
+<form action="<%= request.getContextPath() %>/task" method="post">
+<h1> TASK-uri Suplimentare </h1>
+<h2> </h2>
+
+<table id="t01" align="center" style="width: 100%">
+  <tr>
+    <th> Task Name </th>
+    <th> Description </th> 
+    <th> Technologies </th>
+    <th> Deadline </th>
+    <th> Repetitive </th>
+    <th> Type </th>
+    <th> Contact </th>
+  </tr>
+  <tr>
+    <td><%=request.getAttribute("numeTask1")%></td>
+    <td><%=request.getAttribute("descriereTask1")%></td>
+    <td><%=request.getAttribute("tehnologiiTask1")%></td>
+    <td><%=request.getAttribute("deadlineTask1")%></td>
+    <td><%=request.getAttribute("repetitiveTask1")%></td>
+    <td><%=request.getAttribute("tipTask1")%></td>
+    <td><%=request.getAttribute("contactTask1")%></td>
+  </tr>
+
+</table>
+</div>
+</form>
+
+
+
+
+<!-- PANA AICI -->		
+		
+		
 </div>
 </div>
 <div class="footer">

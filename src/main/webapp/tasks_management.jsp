@@ -40,12 +40,12 @@ TheTaskDispatcherApp
 <div style="width: 100%; margin-top:20px;">
 <div id="formContent" style="float:left; left:250px; position:relative;">
 <ul>
-  <li style="border-bottom: 1px solid #555;"><a id="firstnavbar" href="profile.jsp">Profil</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="taskuri.jsp">Taskuri</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="echipa.jsp">Echipa</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="task_suplim.jsp">Taskuri suplimentare</a></li>
-  <li style="border-bottom: 1px solid #555;"><a class="active" href="#tasks_management">Tasks management</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="employees_management.jsp">Employees management</a></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/Profile" method="post"><button type="submit" name="button" value="profil">Profil</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="taskuri">Taskuri</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/echipa" method="post"><button type="submit" name="button" value="echipa">Echipa</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/task" method="post"><button type="submit" name="button" value="task_suplim">Taskuri suplimentare</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><a href="tasks_management.jsp">Tasks management</a></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="employees_management">Employees management</button></form></li>
   <li style="border-bottom: 1px solid #555;"><a href="teams_management.jsp">Teams management</a></li>
   <li style="border-bottom: 1px solid #555;"><a href="organigrama.jsp">Organigrama</a></li>
   <li style="border-bottom: 1px solid #555;"><a href="date_de_contact.jsp">Date de contact</a></li>
@@ -123,11 +123,6 @@ TheTaskDispatcherApp
      </td>
     </tr>
     <tr height=10px></tr>
-    <tr>
-     <td>SLA</td>
-     <td><input type="text" name="slaTask" /></td>
-    </tr>
-    <tr height=10px></tr>
    </table>
    <input type="submit" value="Add task" />
   </form>
@@ -147,23 +142,44 @@ TheTaskDispatcherApp
      <td>Task Name</td>
      <td><input type="text" name="numeTask" /></td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>Description</td>
      <td><input type="text" name="descriereTask" /></td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>Technology</td>
-     <td><input type="text" name="tehnologiiTask" /></td>
+     <td><input type="text" name="tehnologiiTask1" /></td>
     </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="tehnologiiTask2" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="tehnologiiTask3" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="tehnologiiTask4" /></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td><input type="text" name="tehnologiiTask5" /></td>
+    </tr>
+    <tr height=10px></tr>
     <tr>
      <td style="text-align:right;padding-right:10px;">Deadline</td>
      <td><input type="date" class="fadeIn second" name="deadlineTask"></td>
     </tr>
+    <tr height=10px></tr>
     <tr>
      <td>Type</td>
      <td><input type="radio" name="tipTask" value="echipa" required>Echipa
          <input type="radio" name="tipTask" value="individual" required>Individual
      </td>
+     <tr height=10px></tr>
     </tr>
     <tr>
      <td>Repetitive</td>
@@ -171,10 +187,7 @@ TheTaskDispatcherApp
          <input type="radio" name="repetitive" value="No" required>No
      </td>
     </tr>
-    <tr>
-     <td>SLA</td>
-     <td><input type="text" name="slaTask" /></td>
-    </tr>
+    <tr height=10px></tr>
    </table>
    <input type="submit" value="Update task" />
   </form>
