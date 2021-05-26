@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import login.LoginServlet;
-import mail.SendEmail;
+import email.SendEmail;
 import passwordGenerator.PasswordGenerator;
 import profile.ProfileBean;
 
@@ -23,7 +23,7 @@ public class EchipaDao {
         
     	String SELECT_QUERY = "SELECT company_id FROM employee WHERE id = ?";
     	
-    	String SELECT_TEAMid = "SELECT t.id, t.name FROM team t, employee e WHERE e.id = ? and e.company_id = ? and t.id = e.team_id;";
+    	String SELECT_TEAMid = "SELECT t.id, t.name, t.leader_email FROM team t, employee e WHERE e.id = ? and e.company_id = ? and t.id = e.team_id;";
     	
     	String SELECT_TEAM = "SELECT id, last_name, first_name, job, email, phone FROM employee WHERE team_id = ?;";
     	
@@ -35,7 +35,7 @@ public class EchipaDao {
         Integer id_team = 0;
         Integer id_emp = 0;
         String numeEchipa = null;
-        //String emailLider = null;
+        String emailLider = null;
         //String liderEmail = null;
         String pozitieMembru = null;
         String numeMembru = null;
@@ -66,7 +66,7 @@ public class EchipaDao {
         
         Connection connection = null;
         try {
-                connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3307/task-manager", "root", "admin");
+                connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3307/task-manager", "root", "root");
                 
             } catch (SQLException e1) {
                 // TODO Auto-generated catch block
@@ -111,6 +111,7 @@ public class EchipaDao {
                 System.out.println("ID_TEAM: " + id_team);
                 numeEchipa = result1.getString(2);
                 System.out.println("NUME ECHIPA: " + numeEchipa);
+                emailLider = result1.getString(3);
                 
                 
                 
@@ -156,7 +157,10 @@ public class EchipaDao {
                 membru.setEmailMembru(emailMembru);
                 membru.setTelefonMembru(telefonMembru);
                 membru.setId_team(id_team);
-                membru.setPozitieMembru("Member");
+                
+                if(emailLider.equals(emailMembru))
+                	membru.setPozitieMembru("Leader");
+                else membru.setPozitieMembru("Member");
                 
                 echipa.add(membru);
                 System.out.println("!!! " + echipa.get(0).getNumeMembru());

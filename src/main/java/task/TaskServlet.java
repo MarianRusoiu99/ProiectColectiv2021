@@ -1,4 +1,5 @@
-package taskSuplim;
+package task;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,22 +14,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import login.LoginServlet;
-
+import taskSuplim.TaskSuplimBean;
 import upper.info.UpperInfoBean;
 import upper.info.UpperInfoDao;
 
  
  
-@WebServlet("/task")
-public class TaskSuplimServlet extends HttpServlet {
+@WebServlet("/userTask")
+public class TaskServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private TaskSuplimDao taskSuplimDao;
+    private TaskDao taskDao;
  
     public void init() {
-    	taskSuplimDao = new TaskSuplimDao();
+    	taskDao = new TaskDao();
     }
  
-    public TaskSuplimServlet() {
+    public TaskServlet() {
         super();
     }
  
@@ -49,7 +50,7 @@ public class TaskSuplimServlet extends HttpServlet {
         
         List<TaskSuplimBean> task = new ArrayList<TaskSuplimBean>();
         try {
-			task = TaskSuplimDao.viewTask();
+			task = TaskDao.viewTask();
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -69,7 +70,7 @@ public class TaskSuplimServlet extends HttpServlet {
         request.setAttribute("taskList", task);
 
         
-        request.getRequestDispatcher("task_suplim.jsp").forward(request, response);
+        request.getRequestDispatcher("taskuri.jsp").forward(request, response);
         //response.sendRedirect("profile.jsp");
     	
     	

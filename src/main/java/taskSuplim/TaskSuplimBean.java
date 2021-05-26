@@ -10,6 +10,7 @@ public class TaskSuplimBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	public int idTask;
 	public String numeTask;
 	public String descriereTask;
 	public String tehnologiiTask;
@@ -19,7 +20,12 @@ public class TaskSuplimBean implements Serializable{
 	public String tipTask;
 	
 	
-	
+	public int getIdTask() {
+		return idTask;
+	}
+	public void setIdTask(int idTask) {
+		this.idTask = idTask;
+	}
 	
 	public String getNumeTask() {
 		return numeTask;

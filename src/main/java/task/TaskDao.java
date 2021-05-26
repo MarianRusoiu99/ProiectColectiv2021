@@ -1,4 +1,4 @@
-package taskSuplim;
+package task;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,53 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import login.LoginServlet;
-import email.SendEmail;
-import passwordGenerator.PasswordGenerator;
-import profile.ProfileBean;
+import taskSuplim.TaskSuplimBean;
+import taskSuplim.TaskSuplimDao;
 
-
-
- 
-public class TaskSuplimDao {
+public class TaskDao {
 	
-	public static String getTehnologii(Connection connection, int id_task) {
-		
-		String tehnologiiTask = null;
-		
-		 try {
-			    
-			 
-			    String SELECT_TECH = "select t.id,s.name from `task-manager`.task t, `task-manager`.skill s, `task-manager`.task_skill ts where ts.task_id = t.id and ts.skill_id = s.id having t.id = ? ";
-		    	
-				PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_TECH);
-	        
-	            preparedStatement2.setInt(1, id_task);
-	            System.out.println(preparedStatement2);
-	        
-	            ResultSet result1 = preparedStatement2.executeQuery();
-	        
-	            while (result1.next()) {
-	            	if(tehnologiiTask != null)
-	            		tehnologiiTask = tehnologiiTask+ ", " + result1.getString("s.name");
-	            	else 
-	            		tehnologiiTask = result1.getString("s.name");
-	            }
-	        
-			    } catch (SQLException e) {
-				    // TODO: handle exception
-				    printSQLException(e);
-			    }
-		
-		return tehnologiiTask;
-		
-	}
-	
-	
-	public static List<TaskSuplimBean> viewTask () throws ClassNotFoundException {
+public static List<TaskSuplimBean> viewTask () throws ClassNotFoundException {
         
-    	String SELECT_QUERY = "SELECT company_id FROM employee WHERE id = ?";
     	
-    	String SELECT_TASK = "SELECT t.id, t.name, t.description, t.deadline, t.repetitive, t.type, t.contact_email FROM `task-manager`.task t WHERE t.company_id = ? having t.id not in (select task_id from `task-manager`.employee_task);";
+    	String SELECT_TASK = "SELECT t.id, t.name, t.description, t.deadline, t.repetitive, t.type, t.contact_email FROM `task-manager`.task t,`task-manager`.employee_task et  WHERE et.task_id = t.id and et.employee_id = ? and et.status = 'neterminat'";
     	
     	//String SELECT_SKILL = "SELECT ts.skill_id, s.name FROM task_skill ts, skill s, task t WHERE ts.task_id = ? and ts.task_id = t.id and s.company_id = ? and s.id = ts.skill_id;";
     	
@@ -90,32 +52,13 @@ public class TaskSuplimDao {
             }
         
         
-        try {
-            // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_QUERY);
-            //preparedStatement2.setInt(1, 1);
-            preparedStatement2.setInt(1, LoginServlet.userID);
- 
-            System.out.println(preparedStatement2);
-            // Step 3: Execute the query or update query
-            
-            ResultSet result1 = preparedStatement2.executeQuery();
-            if (result1.next()) {
-                companie = result1.getInt(1);
-            }
- 
-            } catch (SQLException e) {
-                // process sql exception
-                printSQLException(e);
-            }
-        
         
         
         try {
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_TASK);
             //preparedStatement2.setInt(1, 1);
-            preparedStatement2.setInt(1, companie);
+            preparedStatement2.setInt(1, LoginServlet.userID);
  
             System.out.println(preparedStatement2);
             // Step 3: Execute the query or update query
@@ -139,7 +82,7 @@ public class TaskSuplimDao {
                 task_aux.setRepetitiveTask(repetitiveTask);
                 task_aux.setTipTask(tipTask);
                 task_aux.setContactTask(contactTask);
-                task_aux.setTehnologiiTask(getTehnologii(connection,id_task));
+                task_aux.setTehnologiiTask(TaskSuplimDao.getTehnologii(connection,id_task));
                 
                 
                 task.add(task_aux);
@@ -174,4 +117,5 @@ public class TaskSuplimDao {
             }
         }
     }
+
 }

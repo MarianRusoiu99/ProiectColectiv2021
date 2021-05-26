@@ -30,25 +30,31 @@ public class UpperInfoServlet extends HttpServlet {
     		String button = request.getParameter("button");
  
 			UpperInfoDao.info(LoginServlet.userID);
+			
+			request.setAttribute("nume",UpperInfoBean.getNume());
+	        request.setAttribute("job",UpperInfoBean.getJob());
+	        request.setAttribute("tip_user",UpperInfoBean.getTip_user());
+	        request.setAttribute("companie",UpperInfoBean.getCompanie());
+			
 			//System.out.println("UPPERINFO");
 			if ("profil".equals(button)) {
-		request.setAttribute("nume",UpperInfoBean.getNume());
-        request.setAttribute("job",UpperInfoBean.getJob());
-        request.setAttribute("tip_user",UpperInfoBean.getTip_user());
-        request.setAttribute("companie",UpperInfoBean.getCompanie());
+		
         request.getRequestDispatcher("profile.jsp").forward(request, response);
         }else if("taskuri".equals(button)) {
-        	request.setAttribute("nume",UpperInfoBean.getNume());
-            request.setAttribute("job",UpperInfoBean.getJob());
-            request.setAttribute("tip_user",UpperInfoBean.getTip_user());
-            request.setAttribute("companie",UpperInfoBean.getCompanie());
+        	
             request.getRequestDispatcher("taskuri.jsp").forward(request, response);
         }else if("employees_management".equals(button)) {
-        	request.setAttribute("nume",UpperInfoBean.getNume());
-            request.setAttribute("job",UpperInfoBean.getJob());
-            request.setAttribute("tip_user",UpperInfoBean.getTip_user());
-            request.setAttribute("companie",UpperInfoBean.getCompanie());
+        	
             request.getRequestDispatcher("employees_management.jsp").forward(request, response);
+        }else if("task_manag".equals(button)) {
+        	
+            request.getRequestDispatcher("tasks_management.jsp").forward(request, response);
+        }else if("teams_manag".equals(button)) {
+        	
+            request.getRequestDispatcher("teams_management.jsp").forward(request, response);
+        }else if("date_contact".equals(button)) {
+        	
+            request.getRequestDispatcher("date_de_contact.jsp").forward(request, response);
         }
  
 		} catch (ClassNotFoundException e) {

@@ -50,7 +50,7 @@ public class AddTeamDao {
         
         Connection connection = null;
         try {
-                connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3307/task-manager", "root", "admin");
+                connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3307/task-manager", "root", "root");
                 
             } catch (SQLException e1) {
                 // TODO Auto-generated catch block
@@ -177,26 +177,13 @@ public class AddTeamDao {
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TEAMemp);
             //preparedStatement.setInt(1, 1);
+            
             preparedStatement.setInt(1, id_team);
             preparedStatement.setString(2, team.getLiderEchipa());
- 
-            System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
+            preparedStatement.setInt(3, companie);
+            
             result = preparedStatement.executeUpdate();
             
-
-            
-        } catch (SQLException e) {
-            // process sql exception
-            printSQLException(e);
-        }
-        
-        
-        try {
-            
-            // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TEAMemp);
-            //preparedStatement.setInt(1, 1);
             for (String x : team.getMembrii()) {
             	
                 if(x != "") {
