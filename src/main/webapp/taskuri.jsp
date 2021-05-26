@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,15 +42,14 @@ TheTaskDispatcherApp
 <div id="formContent" style="float:left; left:250px; position:relative;">
 <ul>
   <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/Profile" method="post"><button type="submit" name="button" value="profil">Profil</button></form></li>
-  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="taskuri">Taskuri</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/userTask" method="post"><button type="submit" name="button" value="taskuri">Taskuri</button></form></li>
   <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/echipa" method="post"><button type="submit" name="button" value="echipa">Echipa</button></form></li>
   <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/task" method="post"><button type="submit" name="button" value="task_suplim">Taskuri suplimentare</button></form></li>
-  <li style="border-bottom: 1px solid #555;"><a href="tasks_management.jsp">Tasks management</a></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="task_manag">Tasks management</button></form></li>
   <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="employees_management">Employees management</button></form></li>
-  <li style="border-bottom: 1px solid #555;"><a href="teams_management.jsp">Teams management</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="organigrama.jsp">Organigrama</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="date_de_contact.jsp">Date de contact</a></li>
-  <li style="border-bottom: none;"><a id="lastnavbar" href="login.jsp">Log Out</a></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="teams_manag">Teams management</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="date_contact">Date de contact</button></form></li>
+  <li style="border-bottom: none;"><form action="login.jsp" method="post"><button type="submit" name="button" value="profil">Log Out</button></form></li>
 </ul>
 </div>
 <!--  
@@ -57,9 +57,68 @@ TheTaskDispatcherApp
 -->
 
 <div class="content" align="center" style="min-height: 350px;">
-		<h1>pagina TASKURI</h1>
+		<!-- <h1>pagina TASKURI SUPLIMENTARE</h1>
 		Welcome <%=request.getAttribute("id2") %>
-		<a href="login.jsp">Log out</a>
+		<a href="login.jsp">Log out</a> -->
+		
+		
+<!-- TABEL -->
+
+<form action="<%= request.getContextPath() %>/userTask" method="post">
+<h1> TASK-uri Suplimentare </h1>
+<h2> </h2>
+
+<table id="t01" align="center" style="width: 100%">
+  <tr>
+    <th> Task Name </th>
+    <th> Description </th> 
+    <th> Technologies </th>
+    <th> Deadline </th>
+    <th> Repetitive </th>
+    <th> Type </th>
+    <th> Contact </th>
+  </tr>
+  <tbody>
+         <!--   for (Todo todo: todos) {  -->
+         <c:forEach var="task" items="${taskList}">
+         
+            <tr>
+               <td>
+                  <c:out value="${task.numeTask}" />
+               </td>
+               <td>
+                  <c:out value="${task.descriereTask}" />
+               </td>
+               <td>
+                  <c:out value="${task.tehnologiiTask}" />
+               </td>
+               <td>
+                  <c:out value="${task.deadlineTask}" />
+               </td>
+               <td>
+                  <c:out value="${task.repetitiveTask}" />
+               </td>
+               <td>
+                  <c:out value="${task.tipTask}" />
+               </td>
+               <td>
+                  <c:out value="${task.contactTask}" />
+               </td>
+               <td><a href="DoneServlet?id=<c:out value='${task.idTask}' />">Done</a></td>
+             </tr>
+          </c:forEach>
+          <!-- } -->
+  </tbody>
+</table>
+</div>
+</form>
+
+
+
+
+<!-- PANA AICI -->		
+		
+		
 </div>
 </div>
 <div class="footer">

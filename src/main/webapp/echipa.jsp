@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,15 +76,14 @@ TheTaskDispatcherApp
 <div id="formContent" style="float:left; left:250px; position:relative;">
 <ul>
   <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/Profile" method="post"><button type="submit" name="button" value="profil">Profil</button></form></li>
-  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="taskuri">Taskuri</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/userTask" method="post"><button type="submit" name="button" value="taskuri">Taskuri</button></form></li>
   <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/echipa" method="post"><button type="submit" name="button" value="echipa">Echipa</button></form></li>
   <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/task" method="post"><button type="submit" name="button" value="task_suplim">Taskuri suplimentare</button></form></li>
-  <li style="border-bottom: 1px solid #555;"><a href="tasks_management.jsp">Tasks management</a></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="task_manag">Tasks management</button></form></li>
   <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="employees_management">Employees management</button></form></li>
-  <li style="border-bottom: 1px solid #555;"><a href="teams_management.jsp">Teams management</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="organigrama.jsp">Organigrama</a></li>
-  <li style="border-bottom: 1px solid #555;"><a href="date_de_contact.jsp">Date de contact</a></li>
-  <li style="border-bottom: none;"><a id="lastnavbar" href="login.jsp">Log Out</a></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="teams_manag">Teams management</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="date_contact">Date de contact</button></form></li>
+  <li style="border-bottom: none;"><form action="login.jsp" method="post"><button type="submit" name="button" value="profil">Log Out</button></form></li>
 </ul>
 </div>
 <!--  
@@ -106,39 +106,47 @@ TheTaskDispatcherApp
 </div>
 <p>
 
-<table id="t01" align="center" style="width: 100%">
-  <tr>
-    <th> Position </th>
-    <th> Last Name </th> 
-    <th> First Name </th>
-    <th> Job </th>
-    <th> Availability </th>
-    <th> Email </th>
-    <th> Phone </th>
-  </tr>
-  
+ <table id="t01" align="center" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>Position</th>
+                                <th>Last Name</th>
+                                <th>First Name</th>
+                                <th>Job</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--   for (Todo todo: todos) {  -->
+                            <c:forEach var="membru" items="${echipa}">
 
-  <tr>
-    <td><%=request.getAttribute("pozitieMembru1")%></td>
-    <td><%=request.getAttribute("numeMembru1")%></td>
-    <td><%=request.getAttribute("prenumeMembru1")%></td>
-    <td><%=request.getAttribute("jobMembru1")%></td>
-    <td>Available / Unavailable</td>
-    <td><%=request.getAttribute("emailMembru1")%></td>
-    <td><%=request.getAttribute("telefonMembru1")%></td>
-  </tr>
-  <tr>
-    <td><%=request.getAttribute("pozitieMembru2")%></td>
-    <td><%=request.getAttribute("numeMembru2")%></td>
-    <td><%=request.getAttribute("prenumeMembru2")%></td>
-    <td><%=request.getAttribute("jobMembru2")%></td>
-    <td>Available / Unavailable</td>
-    <td><%=request.getAttribute("emailMembru2")%></td>
-    <td><%=request.getAttribute("telefonMembru2")%></td>
-  </tr>
-  
+                                <tr>
+                                    <td>
+                                        <c:out value="${membru.pozitieMembru}" />
+                                    </td>
+                                    <td>
+                                        <c:out value="${membru.numeMembru}" />
+                                    </td>
+                                    <td>
+                                        <c:out value="${membru.prenumeMembru}" />
+                                    </td>
+                                    <td>
+                                        <c:out value="${membru.jobMembru}" />
+                                    </td>
+                                    <td>
+                                        <c:out value="${membru.emailMembru}" />
+                                    </td>
+                                    <td>
+                                        <c:out value="${membru.telefonMembru}" />
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            <!-- } -->
+                        </tbody>
 
 </table>
+
 
 </form>
 
@@ -179,3 +187,4 @@ TheTaskDispatcherApp
 
 </body>
 </html>
+
