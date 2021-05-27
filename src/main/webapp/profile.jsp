@@ -20,6 +20,9 @@ if((request.getSession(false).getAttribute("id1")== null))
 %>
 <jsp:forward page="/Login.jsp"></jsp:forward>
 <%} %>
+
+
+
 <body style="position:relative; margin: 0;">
 
 <div class="applogo"><b>
@@ -68,6 +71,7 @@ TheTaskDispatcherApp
 		
 		
 <form action="<%=request.getContextPath() %>/changePassword" method="post">
+
    <table style="with: 80%">
    
    <tr>
@@ -101,7 +105,7 @@ TheTaskDispatcherApp
    </table>
    <p>
    <div id="formFooter" align="left">
-      <a class="underlineHover" href="#">Change your Password</a>
+      <a class="underlineHover" href="changePassword.jsp">Change your Password</a>
     </div>
   </form>
  </div>
