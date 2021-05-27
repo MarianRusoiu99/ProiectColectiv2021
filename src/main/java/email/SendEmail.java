@@ -22,8 +22,8 @@ public class SendEmail {
 	     props.put("mail.smtp.port", "587");
 	     props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 	     
-	     String myAccountEmail="ghemes.silvana@gmail.com";
-	     String e_password="interogatoriu00";
+	     String myAccountEmail="task.dispatcher00@gmail.com";
+	     String e_password = "TASKdispatcherApp";
 	     
 	     Session session = Session.getInstance(props, new Authenticator() {
 	    	 protected PasswordAuthentication getPasswordAuthentication() {
@@ -54,3 +54,4 @@ public class SendEmail {
 	}
 
 }
+

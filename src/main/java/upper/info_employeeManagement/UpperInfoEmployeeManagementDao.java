@@ -26,7 +26,7 @@ public class UpperInfoEmployeeManagementDao {
         
         Class.forName("com.mysql.jdbc.Driver");
  
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/task-manager", "root", "root");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/task-manager", "root", "admin");
  
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement("select e.id,e.last_name, e.first_name, e.job, e.user_type,c.name from `task-manager`.employee e, `task-manager`.company c where e.company_id=c.id having e.id = ? ")) {

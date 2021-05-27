@@ -46,7 +46,7 @@ public class AddTaskDao {
         
         Connection connection = null;
         try {
-                connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3307/task-manager", "root", "root");
+                connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3307/task-manager", "root", "admin");
                 
             } catch (SQLException e1) {
                 // TODO Auto-generated catch block
@@ -168,4 +168,3 @@ public class AddTaskDao {
         }
     }
 }
-

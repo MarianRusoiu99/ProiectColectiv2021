@@ -1,18 +1,34 @@
-package task;
+package changePassword;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import echipa.EchipaBean;
 import login.LoginServlet;
+import email.SendEmail;
+import passwordGenerator.PasswordGenerator;
 
-public class DoneDao {
+
+
+ 
+public class ChangePasswordDao {
 	
-	public void doneTask(int id) throws ClassNotFoundException {
-		
-		String UPDATE_EmpTask = "UPDATE `task-manager`.employee_task SET status = 'finalizat' WHERE task_id  = ?";
-		
+
+    public int changePass (ChangePasswordBean password) throws Exception {
+        
+    	//String SELECT_QUERY = "SELECT company_id FROM employee WHERE id = ?"; 
+    	
+    	String UPDATE_PASS = "UPDATE employee SET password = ? WHERE id = ?";
+       
+        
+        int result = 0;
+
+        
         Class.forName("com.mysql.jdbc.Driver");
         
         
@@ -25,30 +41,29 @@ public class DoneDao {
                 e1.printStackTrace();
             }
         
-        try {
+        
+try {
             
             // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_EmpTask);
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PASS);
             //preparedStatement.setInt(1, 1);
-            preparedStatement.setInt(1, id);
- 
-            System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
-            preparedStatement.executeUpdate();
             
+            preparedStatement.setString(1, password.getNewPass());
+            preparedStatement.setInt(2, LoginServlet.userID);
             
+            result = preparedStatement.executeUpdate();
             
-            } catch (SQLException e) {
+        } catch (SQLException e) {
             // process sql exception
             printSQLException(e);
-            }
-		
-		
-		
-	}
-	
-	
-	private static void printSQLException(SQLException ex) {
+        }
+        
+        return result;
+    }
+    
+    
+ 
+    private static void printSQLException(SQLException ex) {
         for (Throwable e: ex) {
             if (e instanceof SQLException) {
                 e.printStackTrace(System.err);
@@ -63,5 +78,4 @@ public class DoneDao {
             }
         }
     }
-
 }
