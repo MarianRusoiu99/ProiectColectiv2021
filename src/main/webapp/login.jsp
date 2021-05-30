@@ -66,7 +66,7 @@ TheTaskDispatcherApp
 	<TD>
 	<TD>
 	<TD>
-	<TD><A HREF = "mailto:indreivalentinaandreea@gmail.com" style="color:black">indreivalentinaandreea@gmail.com</A>
+	<TD><A HREF = "mailto:task.dispatcher00@gmail.com" style="color:blue">task.dispatcher00@gmail.com</A>
 </TABLE>
 </div>
 </body>

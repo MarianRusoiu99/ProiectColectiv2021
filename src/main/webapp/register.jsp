@@ -407,15 +407,12 @@ TheTaskDispatcherApp
     -->
     
     
-     <td style="text-align:right;padding-right:10px;">Birth Date</td>
-     <td style="padding:8px"><SELECT style="padding:5px" id ="day" name = "dd">
-    </SELECT>
-    <SELECT style="padding:5px"  id ="month" name = "mm" onchange="change_month(this);">
-    </SELECT>
-    <SELECT style="padding:5px" id ="year" name = "yyyy" onchange="change_year(this);">
-    </SELECT>
-    <div id="error-birthday"></div></td>
+    <tr height=10px></tr>
+    <tr>
+     <td style="text-align:right;padding-right:10px;"style="text-align:right;padding-right:10px;">Birth Date</td>
+     <td><input type="date" class="fadeIn second" name="birthDate"></td>
     </tr>
+    <tr height=17px></tr>
     <tr>
      <td style="text-align:right;padding-right:10px;">Gender</td>
      <td><input type="radio" name="sex" value="M" required>Male
@@ -454,7 +451,7 @@ TheTaskDispatcherApp
     </table>
       <input type="submit" class="fadeIn third" value="Submit">
     </form>
-  <p style="color:black; text-align:left; margin-left: 20px; margin-bottom: 30px; margin-top: 0px;">Already have an account? <a href="login.jsp">Login here</a>.</p>
+  <p style="color:black; text-align:center; margin-left: 20px; margin-bottom: 30px; margin-top: 0px;">Already have an account? <a href="login.jsp">Login here</a>.</p>
   </div>
 </div>
 
@@ -464,7 +461,7 @@ TheTaskDispatcherApp
 	<TD>
 	<TD>
 	<TD>
-	<TD align="right"><b><font size="+2">Have a question?</font></b>
+	<TD align="center"><b><font size="+2">Have a question?</font></b>
 <TR> 
 	<TD>
 	<TD>
@@ -479,7 +476,7 @@ TheTaskDispatcherApp
 	<TD>
 	<TD>
 	<TD>
-	<TD><A HREF = "mailto:indreivalentinaandreea@gmail.com" style="color:black">indreivalentinaandreea@gmail.com</A>
+	<TD><A HREF = "mailto:task.dispatcher00@gmail.com" style="color:blue">task.dispatcher00@gmail.com</A>
 </TABLE>
 </div>
 </body>

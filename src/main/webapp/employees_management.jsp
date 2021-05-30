@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +25,7 @@ TheTaskDispatcherApp
 
 <table style="table-layout: fixed; width: 66%; margin-top:200px; margin-left:250px; margin-right:250px; line-height: 20px;">
 <tr>
-	<td width="50%">Nume: <%=request.getAttribute("nume") %></td>
+	<td width="50%">Name: <%=request.getAttribute("nume") %></td>
 	<td></td>
 </tr>
 <tr>
@@ -32,23 +33,31 @@ TheTaskDispatcherApp
 	<td></td>
 </tr>
 <tr>
-	<td>Tip user: <%=request.getAttribute("tip_user") %></td>
-	<td align="right"><b>Numele firmei: <%=request.getAttribute("companie") %> </b></td>
+	<td>User type: <%=request.getAttribute("tip_user") %></td>
+	<td align="right"><b>Company name: <%=request.getAttribute("companie") %> </b></td>
 </tr>
 </table>
 
 <div style="width: 100%; margin-top:20px;">
 <div id="formContent" style="float:left; left:250px; position:relative;">
 <ul>
-  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/Profile" method="post"><button type="submit" name="button" value="profil">Profil</button></form></li>
-  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/userTask" method="post"><button type="submit" name="button" value="taskuri">Taskuri</button></form></li>
-  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/echipa" method="post"><button type="submit" name="button" value="echipa">Echipa</button></form></li>
-  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/task" method="post"><button type="submit" name="button" value="task_suplim">Taskuri suplimentare</button></form></li>
-  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="task_manag">Tasks management</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/Profile" method="post"><button type="submit" name="button" value="profil">Profile</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/userTask" method="post"><button type="submit" name="button" value="taskuri">Tasks</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/echipa" method="post"><button type="submit" name="button" value="echipa">Team</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/task" method="post"><button type="submit" name="button" value="task_suplim">Extra tasks</button></form></li>
+ <c:set var = "userType" scope = "session" value = '${requestScope["tip_user"]}'/>
+  <c:choose>
+    <c:when test= "${userType == 'employee'}" >    
+  <li style="border-bottom: none;"><form action="login.jsp" method="post"><button type="submit" name="button" value="profil">Log Out</button></form></li>  
+    </c:when>
+<c:otherwise>
+    <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="task_manag">Tasks management</button></form></li>
   <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="employees_management">Employees management</button></form></li>
   <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="teams_manag">Teams management</button></form></li>
-  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="date_contact">Date de contact</button></form></li>
-  <li style="border-bottom: none;"><form action="login.jsp" method="post"><button type="submit" name="button" value="profil">Log Out</button></form></li>
+  <li style="border-bottom: none;"><form action="login.jsp" method="post"><button type="submit" name="button" value="profil">Log Out</button></form></li>  
+ 
+</c:otherwise>
+</c:choose>
 </ul>
 </div>
 <!--  
@@ -57,43 +66,10 @@ TheTaskDispatcherApp
 
 <div class="content" align="center" style="min-height: 350px;">
 
-
-<table style="width: 110%">	
-		
-<!--  PRIMA COLOANA -->	
-
-<td style="width:45%">	
  <div align="center">
   <h1>Add Employee</h1>
   
-<!--  CHOOSE A FILE -->	
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
-<main class="main_full">
-	<div class="container">
-		<div class="panel">
-			<div class="button_outer">
-				<div class="btn_upload">
-					Profile photo: 
-					<input type="file" id="upload_file" name="">
-				</div>
-				<div class="processing_bar"></div>
-				<div class="success_box"></div>
-			</div>
-		</div>
-		<div class="error_msg"></div>
-		<div class="uploaded_file_view" id="uploaded_view">
-			<button class="file_remove">x</button>
-		</div>
-	</div>
-</main>
-
-<!--  PANA AICI  -->
-
-
-  <form action="<%= request.getContextPath() %>/addEmployee" method="post">
+  <form action="<%= request.getContextPath() %>/addEmployee" method="post" onsubmit="myFunction()">
    <table style="with: 80%">
     <tr>
      <td>Last Name</td>
@@ -103,6 +79,13 @@ TheTaskDispatcherApp
     <tr>
      <td>First Name</td>
      <td><input type="text" name="firstName" /></td>
+    </tr>
+    <tr height=10px></tr>
+    <tr>
+     <td>User type</td>
+     <td><input type="radio" name="userType" value="manager" required>Manager
+         <input type="radio" name="userType" value="employee" required>Employee
+     </td>
     </tr>
     <tr height=10px></tr>
     <tr>
@@ -158,109 +141,13 @@ TheTaskDispatcherApp
    <input type="submit" value="Add employee" />
   </form>
  </div>
-</td>
  
-<!-- A DOUA COLOANA -->
-<td>
+ <script>
+	function myFunction() {
+	  alert("Angajatul a fost adaugat cu succes!");
+	}
+</script>
 
- <div align="center">
-  <h1>Update Employee</h1>
-  
-  
-  <!--  CHOOSE A FILE -->	
- 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<main class="main_full">
-	<div class="container">
-		<div class="panel">
-			<div class="button_outer">
-				<div class="btn_upload">
-					Profile photo: 
-					<input type="file" id="upload_file" name="">
-				</div>
-				<div class="processing_bar"></div>
-				<div class="success_box"></div>
-			</div>
-		</div>
-		<div class="error_msg"></div>
-		<div class="uploaded_file_view" id="uploaded_view">
-			<button class="file_remove">x</button>
-		</div>
-	</div>
-</main>
-
-<!--  PANA AICI  -->
-
-
-  <form action="<%= request.getContextPath() %>/editEmployee" method="post">
-   <table style="with: 80%">
-   
-    <tr>
-     <td>Last Name</td>
-     <td><input type="text" name="lastName" /></td>
-    </tr>
-    <tr height=10px></tr>
-    <tr>
-     <td>First Name</td>
-     <td><input type="text" name="firstName" /></td>
-    </tr>
-    <tr height=10px></tr>
-    <tr>
-     <td>Birth Date</td>
-     <td><input type="date" class="fadeIn second" name="birthDate"></td>
-    </tr>
-    <tr height=10px></tr>
-    <tr>
-     <td>Gender</td>
-     <td><input type="radio" name="sex" value="M" required>Male
-         <input type="radio" name="sex" value="F" required>Female
-         <input type="radio" name="sex" value="O" required>Other
-     </td>
-    </tr>
-    <tr height=10px></tr>
-    <tr>
-     <td>Job</td>
-     <td><input type="text" name="job" /></td>
-    </tr>
-    <tr height=10px></tr>
-    <tr>
-     <td>Skills</td>
-     <td><input type="text" name="skills1" /></td>
-    </tr>
-    <tr>
-     <td></td>
-     <td><input type="text" name="skills2" /></td>
-    </tr>
-    <tr>
-     <td></td>
-     <td><input type="text" name="skills3" /></td>
-    </tr>
-    <tr>
-     <td></td>
-     <td><input type="text" name="skills4" /></td>
-    </tr>
-    <tr>
-     <td></td>
-     <td><input type="text" name="skills5" /></td>
-    </tr>
-    <tr height=10px></tr>
-    <tr>
-     <td>Email</td>
-     <td><input type="text" name="email" /></td>
-    </tr>
-    <tr height=10px></tr>
-    <tr>
-     <td>Phone</td>
-     <td><input type="text" name="phone" /></td>
-    </tr>
-    <tr height=10px></tr>
-   </table>
-   <input type="submit" value="Update employee" />
-  </form>
- </div>
- </td>
-</table> 
- 
  <!--  ---------------------------------------------------  -->
  
 </div>
@@ -286,7 +173,7 @@ TheTaskDispatcherApp
 	<TD>
 	<TD>
 	<TD>
-	<TD><A HREF = "mailto:indreivalentinaandreea@gmail.com" style="color:blue">indreivalentinaandreea@gmail.com</A>
+	<TD><A HREF = "mailto:task.dispatcher00@gmail.com" style="color:blue">task.dispatcher00@gmail.com</A>
 </TABLE>
 </div>
 

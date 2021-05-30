@@ -9,38 +9,7 @@
 <link href="CSS/content.css" rel="stylesheet" id="bootstrap-css">
 <link href="CSS/footer.css" rel="stylesheet" id="bootstrap-css">
  
- 
-<!--  CSS tabel  -->
- 
- 
-<style>
-/*table {
-  width:100%;
-}
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-th, td {
-  padding: 15px;
-  text-align: left;
-}
-#t01 tr:nth-child(even) {
-  background-color: #eee;
-}
-#t01 tr:nth-child(odd) {
- background-color: #fff;
-}
-#t01 th {
-  background-color: black;
-  color: white;
-}*/
-</style>
- 
- 
- 
-<!--  final CSS  -->
- 
+
  
  
 <title>Insert title here</title>
@@ -59,31 +28,38 @@ TheTaskDispatcherApp
  
 <table style="table-layout: fixed; width: 66%; margin-top:200px; margin-left:250px; margin-right:250px; line-height: 20px;">
 <tr>
-    <td width="50%">Nume: <%=request.getAttribute("nume") %></td>
+    <td width="50%">Name: <%=request.getAttribute("nume") %></td>
     <td></td>
 </tr>
 <tr>
     <td>Job: <%=request.getAttribute("job") %></td>
     <td></td>
 </tr>
-<tr>
-    <td>Tip user: <%=request.getAttribute("tip_user") %></td>
-    <td align="right"><b>Numele firmei: <%=request.getAttribute("companie") %> </b></td>
+<tr><td>User type: <%=request.getAttribute("tip_user") %></td>
+    <td align="right"><b>Company name: <%=request.getAttribute("companie") %> </b></td>
 </tr>
 </table>
  
 <div style="width: 100%; margin-top:20px;">
 <div id="formContent" style="float:left; left:250px; position:relative;">
 <ul>
-  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/Profile" method="post"><button type="submit" name="button" value="profil">Profil</button></form></li>
-  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/userTask" method="post"><button type="submit" name="button" value="taskuri">Taskuri</button></form></li>
-  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/echipa" method="post"><button type="submit" name="button" value="echipa">Echipa</button></form></li>
-  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/task" method="post"><button type="submit" name="button" value="task_suplim">Taskuri suplimentare</button></form></li>
-  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="task_manag">Tasks management</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/Profile" method="post"><button type="submit" name="button" value="profil">Profile</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/userTask" method="post"><button type="submit" name="button" value="taskuri">Tasks</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/echipa" method="post"><button type="submit" name="button" value="echipa">Team</button></form></li>
+  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/task" method="post"><button type="submit" name="button" value="task_suplim">Extra tasks</button></form></li>
+ <c:set var = "userType" scope = "session" value = '${requestScope["tip_user"]}'/>
+  <c:choose>
+    <c:when test= "${userType == 'employee'}" >    
+  <li style="border-bottom: none;"><form action="login.jsp" method="post"><button type="submit" name="button" value="profil">Log Out</button></form></li>  
+    </c:when>
+<c:otherwise>
+    <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="task_manag">Tasks management</button></form></li>
   <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="employees_management">Employees management</button></form></li>
   <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="teams_manag">Teams management</button></form></li>
-  <li style="border-bottom: 1px solid #555;"><form action="<%=request.getContextPath()%>/upperInfo" method="post"><button type="submit" name="button" value="date_contact">Date de contact</button></form></li>
-  <li style="border-bottom: none;"><form action="login.jsp" method="post"><button type="submit" name="button" value="profil">Log Out</button></form></li>
+  <li style="border-bottom: none;"><form action="login.jsp" method="post"><button type="submit" name="button" value="profil">Log Out</button></form></li>  
+ 
+</c:otherwise>
+</c:choose>
 </ul>
 </div>
 <!--  
@@ -94,17 +70,20 @@ TheTaskDispatcherApp
         <!--  <h1>pagina ECHIPA</h1>
         Welcome <%=request.getAttribute("id2") %>
         <a href="login.jsp">Log out</a>  -->
-        
+ 
  
 <!-- TABEL -->
  
 <form action="<%= request.getContextPath() %>/echipa" method="post">
 <h1> MY TEAM </h1>
  
-<div align="left">
+<c:choose>
+    <c:when test= '${requestScope["numeEchipa"] != null}' >
+    <div align="left">
 <h2>Team name: </h2><%=request.getAttribute("numeEchipa")%>
+ 
 <br>
-<h2>Number of team tasks: (va urma)</h2> 
+ 
 </div>
 <p>
  
@@ -149,13 +128,22 @@ TheTaskDispatcherApp
  
 </table>
  
+    </c:when>
+<c:otherwise>
+ 
+<h2 align="center">You are not in a team!</h2>
+ 
+</c:otherwise>
+</c:choose>
+ 
+ 
  
 </form>
  
-
+ 
  
 <!-- PANA AICI -->      
-        
+ 
  
 </div>
 </div>
@@ -180,7 +168,7 @@ TheTaskDispatcherApp
     <TD>
     <TD>
     <TD>
-    <TD><A HREF = "mailto:indreivalentinaandreea@gmail.com" style="color:blue">indreivalentinaandreea@gmail.com</A>
+    <TD><A HREF = "mailto:task.dispatcher00@gmail.com" style="color:blue">task.dispatcher00@gmail.com</A>
 </TABLE>
 </div>
  
