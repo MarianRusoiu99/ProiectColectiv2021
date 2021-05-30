@@ -72,13 +72,30 @@ TheTaskDispatcherApp
 		
 <form action="<%=request.getContextPath() %>/changePassword" method="post">
 
+<table>
+
+
+	<td>
+   
+
+<%
+if((request.getAttribute("sex")=="F"))
+{
+%>
+<img src="poze/woman-profile-cartoon_18591-58477.jpg" alt="Avatar1" align="left" style="width:250px">
+<%} else {%>
+<img src="poze/man-profile-cartoon_18591-58482.jpg" alt="Avatar2" align="left" style="width:250px">
+<%} %>
+
+
+   </td>
+
+
+	<td>
+
    <table style="with: 80%">
    
-   <tr>
-   <td>
-   <img src="poze/img_avatar2.png" alt="Avatar" align="left" style="width:100px">
-   </td>
-   </tr>
+   
   <tr></tr>
   <tr></tr>
     <tr>
@@ -107,11 +124,11 @@ TheTaskDispatcherApp
    <div id="formFooter" align="left">
       <a class="underlineHover" href="changePassword.jsp">Change your Password</a>
     </div>
+ 	</td>   
+</table>
   </form>
  </div>
- </td>
-</table> 
-		
+
 		
 		
 		

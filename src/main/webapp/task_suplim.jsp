@@ -104,12 +104,62 @@ TheTaskDispatcherApp
                <td>
                   <c:out value="${task.contactTask}" />
                </td>
-               <td><a href="AdaugareTask?id=<c:out value='${task.idTask}' />">Preia Task</a></td>
+               <td><a href="AdaugareTask?id=<c:out value='${task.idTask}' />&amp;type=<c:out value='${task.tipTask}' />">Preia Task</a></td>
              </tr>
           </c:forEach>
           <!-- } -->
   </tbody>
 </table>
+
+<div align="left">
+<h2>Task-uri de echipa:</h2> 
+</div>
+ 
+<table id="t01" align="center" style="width: 100%">
+  <tr>
+    <th> Task Name </th>
+    <th> Description </th> 
+    <th> Technologies </th>
+    <th> Deadline </th>
+    <th> Repetitive </th>
+    <th> Type </th>
+    <th> Contact </th>
+  </tr>
+  <tbody>
+         <!--   for (Todo todo: todos) {  -->
+         <c:forEach var="task" items="${teamTask}">
+         
+            <tr>
+               <td>
+                  <c:out value="${task.numeTask}" />
+               </td>
+               <td>
+                  <c:out value="${task.descriereTask}" />
+               </td>
+               <td>
+                  <c:out value="${task.tehnologiiTask}" />
+               </td>
+               <td>
+                  <c:out value="${task.deadlineTask}" />
+               </td>
+               <td>
+                  <c:out value="${task.repetitiveTask}" />
+               </td>
+               <td>
+                  <c:out value="${task.tipTask}" />
+               </td>
+               <td>
+                  <c:out value="${task.contactTask}" />
+               </td>               
+               <td><a href="AdaugareTask?id=<c:out value='${task.idTask}' />&amp;type=<c:out value='${task.tipTask}' />">Preia Task</a></td>
+              
+             </tr>
+          </c:forEach>
+          <!-- } -->
+  </tbody>
+</table>
+
+
 </div>
 </form>
 
