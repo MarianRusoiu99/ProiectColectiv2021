@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import echipa.EchipaBean;
+import echipa.EchipaDao;
 import login.LoginServlet;
 import taskSuplim.TaskSuplimBean;
 import upper.info.UpperInfoBean;
@@ -56,6 +58,26 @@ public class TaskServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
         
+        List<TaskSuplimBean> teamTask = new ArrayList<TaskSuplimBean>();
+        try {
+            teamTask = TaskDao.viewTeamTasks();
+        } catch (ClassNotFoundException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        
+        for(TaskSuplimBean x : teamTask) {
+        	System.out.println("!!! " + x.getNumeTask());
+        }
+        
+        List<TaskSuplimBean> completeTask = new ArrayList<TaskSuplimBean>();
+        try {
+            completeTask = TaskDao.viewCompleteTasks();
+        } catch (ClassNotFoundException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        
         try {
 			UpperInfoDao.info(LoginServlet.userID);
 		} catch (ClassNotFoundException e1) {
@@ -68,6 +90,8 @@ public class TaskServlet extends HttpServlet {
         request.setAttribute("companie",UpperInfoBean.getCompanie());        
         
         request.setAttribute("taskList", task);
+        request.setAttribute("teamTask", teamTask);
+        request.setAttribute("completeTask", completeTask);
 
         
         request.getRequestDispatcher("taskuri.jsp").forward(request, response);

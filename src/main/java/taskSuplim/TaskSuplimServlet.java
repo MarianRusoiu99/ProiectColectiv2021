@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import login.LoginServlet;
-
+import task.TaskDao;
 import upper.info.UpperInfoBean;
 import upper.info.UpperInfoDao;
 
@@ -55,6 +55,14 @@ public class TaskSuplimServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
         
+        List<TaskSuplimBean> teamTask = new ArrayList<TaskSuplimBean>();
+        try {
+            teamTask = TaskSuplimDao.viewTeamTasks();
+        } catch (ClassNotFoundException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        
         try {
 			UpperInfoDao.info(LoginServlet.userID);
 		} catch (ClassNotFoundException e1) {
@@ -67,6 +75,7 @@ public class TaskSuplimServlet extends HttpServlet {
         request.setAttribute("companie",UpperInfoBean.getCompanie());        
         
         request.setAttribute("taskList", task);
+        request.setAttribute("teamTask", teamTask);
 
         
         request.getRequestDispatcher("task_suplim.jsp").forward(request, response);

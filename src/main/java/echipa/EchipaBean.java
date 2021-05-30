@@ -19,16 +19,60 @@ public class EchipaBean implements Serializable{
 	public String telefonMembru;
 	public String numeEchipa;
 	public String emailLider;
+	
+	
 	public int id_team;
-
-
-
+	
+	
+	public String numeLider;
+    public String prenumeLider;
+    public String jobLider;
+    public String telefonLider;
+    public String pozitieLider;
+    
+    
+	
 	public int getId_team() {
 		return id_team;
 	}
 	public void setId_team(int id_team) {
 		this.id_team = id_team;
 	}
+	public String getPozitieLider() {
+		return pozitieLider;
+	}
+	public void setPozitieLider(String pozitieLider) {
+		this.pozitieLider = pozitieLider;
+	}
+	public String getNumeLider() {
+		return numeLider;
+	}
+	public void setNumeLider(String numeLider) {
+		this.numeLider = numeLider;
+	}
+	public String getPrenumeLider() {
+		return prenumeLider;
+	}
+	public void setPrenumeLider(String prenumeLider) {
+		this.prenumeLider = prenumeLider;
+	}
+	public String getJobLider() {
+		return jobLider;
+	}
+	public void setJobLider(String jobLider) {
+		this.jobLider = jobLider;
+	}
+	public String getTelefonLider() {
+		return telefonLider;
+	}
+	public void setTelefonLider(String telefonLider) {
+		this.telefonLider = telefonLider;
+	}
+	
+	
+	
+	
+	
 	public String getNumeEchipa() {
 		return numeEchipa;
 	}

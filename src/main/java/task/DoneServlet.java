@@ -50,8 +50,9 @@ public class DoneServlet extends HttpServlet {
                 request.setAttribute("id2", LoginServlet.userID);
 	            
                 int id_task = Integer.parseInt(request.getParameter("id"));
+                String tip_task = request.getParameter("type");
                 
-                doneDao.doneTask(id_task);
+                doneDao.doneTask(id_task,tip_task);
 	            
                 response.sendRedirect("userTask");
                 
@@ -65,3 +66,4 @@ public class DoneServlet extends HttpServlet {
 	}
 
 }
+

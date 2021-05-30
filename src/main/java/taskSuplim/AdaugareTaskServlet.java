@@ -49,8 +49,8 @@ public class AdaugareTaskServlet extends HttpServlet {
                 request.setAttribute("id2", LoginServlet.userID);
 	            
                 int id_task = Integer.parseInt(request.getParameter("id"));
-                
-                adaugareTaskDao.addTask(id_task);
+                String tip_task = request.getParameter("type");
+                adaugareTaskDao.addTask(id_task,tip_task);
 	            
                 response.sendRedirect("task");
                 

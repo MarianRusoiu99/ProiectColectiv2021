@@ -1,5 +1,5 @@
 package echipa;
-
+ 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,29 +7,34 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+ 
 import login.LoginServlet;
 import email.SendEmail;
 import passwordGenerator.PasswordGenerator;
 import profile.ProfileBean;
-
-
-
+import taskSuplim.TaskSuplimBean;
+import taskSuplim.TaskSuplimDao;
+ 
+ 
+ 
  
 public class EchipaDao {
-	
-	
-	public static List<EchipaBean> viewTeam () throws ClassNotFoundException {
+    
+    
+    public static List<EchipaBean> viewTeam () throws ClassNotFoundException {
         
-    	String SELECT_QUERY = "SELECT company_id FROM employee WHERE id = ?";
-    	
-    	String SELECT_TEAMid = "SELECT t.id, t.name, t.leader_email FROM team t, employee e WHERE e.id = ? and e.company_id = ? and t.id = e.team_id;";
-    	
-    	String SELECT_TEAM = "SELECT id, last_name, first_name, job, email, phone FROM employee WHERE team_id = ?;";
-    	
-    	List<EchipaBean> echipa = new ArrayList<EchipaBean>();
-    	
-    	
+        String SELECT_QUERY = "SELECT company_id FROM employee WHERE id = ?";
+        
+        String SELECT_TEAMid = "SELECT t.id, t.name, t.leader_email FROM team t, employee e WHERE e.id = ? and e.company_id = ? and t.id = e.team_id;";
+        
+        String SELECT_TEAM = "SELECT id, last_name, first_name, job, email, phone FROM employee WHERE team_id = ?;";
+        
+        
+        
+        
+        List<EchipaBean> echipa = new ArrayList<EchipaBean>();
+        
+        
         int result = 0;
         int companie = 0;
         Integer id_team = 0;
@@ -46,11 +51,8 @@ public class EchipaDao {
         String telefonMembru = null;
         
         
-//        String numeLider = null;
-//        String prenumeLider = null;
-//        String jobLider = null;
-//        String telefonLider = null;
-        
+      
+       
         
         
         PasswordGenerator passwordGenerator = new PasswordGenerator.PasswordGeneratorBuilder()
@@ -123,13 +125,13 @@ public class EchipaDao {
             }
         
         if(id_team != 0) {
-
+ 
         try {
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_TEAM);
             //preparedStatement2.setInt(1, 1);
             preparedStatement2.setInt(1, id_team);
-
+ 
             System.out.println(preparedStatement2);
             // Step 3: Execute the query or update query
             
@@ -159,7 +161,7 @@ public class EchipaDao {
                 membru.setId_team(id_team);
                 
                 if(emailLider.equals(emailMembru))
-                	membru.setPozitieMembru("Leader");
+                    membru.setPozitieMembru("Leader");
                 else membru.setPozitieMembru("Member");
                 
                 echipa.add(membru);
@@ -173,15 +175,19 @@ public class EchipaDao {
             }
         
         } else {
-        	
-        	//EchipaServlet.infoBox("YOUR INFORMATION HERE", "TITLE BAR MESSAGE");
-        	
-        	System.out.println(" --------- Utilizatorul nu face parte din vreo echipa -----------");
-        	
+            
+            //EchipaServlet.infoBox("YOUR INFORMATION HERE", "TITLE BAR MESSAGE");
+            
+            System.out.println(" --------- Utilizatorul nu face parte din vreo echipa -----------");
+            
         }
+             
         
         return echipa;
     }
+    
+    
+    
     
     
  
