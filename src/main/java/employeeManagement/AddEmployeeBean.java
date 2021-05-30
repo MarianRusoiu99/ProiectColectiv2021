@@ -20,9 +20,18 @@ public class AddEmployeeBean implements Serializable {
     private String password;
     private String skill;
     private List<String> skills;
+    private String userType;
     
     
-    
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
 	public List<String> getSkills() {
 		return skills;
 	}

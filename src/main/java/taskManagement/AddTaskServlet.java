@@ -13,6 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import login.LoginServlet;
+import upper.info.UpperInfoBean;
+import upper.info.UpperInfoDao;
+
  
  
  
@@ -73,6 +77,16 @@ public class AddTaskServlet extends HttpServlet {
             e.printStackTrace();
         }
  
-        response.sendRedirect("tasks_management.jsp");
+        try {
+			UpperInfoDao.info(LoginServlet.userID);
+			request.setAttribute("nume",UpperInfoBean.getNume());
+	        request.setAttribute("job",UpperInfoBean.getJob());
+	        request.setAttribute("tip_user",UpperInfoBean.getTip_user());
+	        request.setAttribute("companie",UpperInfoBean.getCompanie());
+	        request.getRequestDispatcher("tasks_management.jsp").forward(request, response);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

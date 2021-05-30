@@ -72,8 +72,10 @@ public class EchipaServlet extends HttpServlet {
         
         request.setAttribute("echipa", echipa);
         
-        request.setAttribute("numeEchipa",echipa.get(0).getNumeEchipa());
-        request.setAttribute("id_team",echipa.get(0).getId_team());
+        if(!echipa.isEmpty()) {
+            
+            request.setAttribute("numeEchipa",echipa.get(0).getNumeEchipa());
+        }
 
         
         request.getRequestDispatcher("echipa.jsp").forward(request, response);

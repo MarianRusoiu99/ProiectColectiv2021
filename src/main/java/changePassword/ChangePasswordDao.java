@@ -20,8 +20,6 @@ public class ChangePasswordDao {
 	
 
     public int changePass (ChangePasswordBean password) throws Exception {
-        
-    	//String SELECT_QUERY = "SELECT company_id FROM employee WHERE id = ?"; 
     	
     	String UPDATE_PASS = "UPDATE employee SET password = ? WHERE id = ?";
        
@@ -44,9 +42,7 @@ public class ChangePasswordDao {
         
 try {
             
-            // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PASS);
-            //preparedStatement.setInt(1, 1);
             
             preparedStatement.setString(1, password.getNewPass());
             preparedStatement.setInt(2, LoginServlet.userID);

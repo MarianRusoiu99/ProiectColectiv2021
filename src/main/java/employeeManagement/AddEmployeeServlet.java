@@ -17,8 +17,6 @@ import login.LoginServlet;
 import upper.info.UpperInfoBean;
 import upper.info.UpperInfoDao;
 //import employeeManagement.AddEmployeeBean;
-import upper.info_employeeManagement.UpperInfoEmployeeManagementBean;
-import upper.info_employeeManagement.UpperInfoEmployeeManagementDao;
  
  
  
@@ -50,7 +48,8 @@ public class AddEmployeeServlet extends HttpServlet {
     	
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-        String birthDate = request.getParameter("birthDate");
+        String userType = request.getParameter("userType");
+        String birthDate = request.getParameter("birthDate");       
         String sex = request.getParameter("sex");
         String job = request.getParameter("job");
         skills.add(request.getParameter("skills1"));
@@ -65,13 +64,14 @@ public class AddEmployeeServlet extends HttpServlet {
         
         employee.setFirstName(firstName);
         employee.setLastName(lastName);
-        employee.setBirthDate(birthDate);
+        employee.setUserType(userType);
+        employee.setBirthDate(birthDate);        
         employee.setSex(sex);
         employee.setJob(job);
         employee.setSkills(skills);
         employee.setEmail(email);
         employee.setPhone(phone);
-        
+
         
         try {
             
@@ -89,6 +89,5 @@ public class AddEmployeeServlet extends HttpServlet {
             e.printStackTrace();
         }
  
-        //response.sendRedirect("employees_management.jsp");
     }
 }

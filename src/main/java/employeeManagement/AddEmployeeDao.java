@@ -184,7 +184,7 @@ public class AddEmployeeDao {
             preparedStatement.setInt(7, companie);
             preparedStatement.setString(8, employee.getJob());
             preparedStatement.setString(9, employee.getTeam());
-            preparedStatement.setString(10, "employee");
+            preparedStatement.setString(10, employee.getUserType());
             preparedStatement.setString(11, password);
  
             System.out.println(preparedStatement);

@@ -16,9 +16,6 @@ import javax.servlet.http.HttpSession;
 import login.LoginServlet;
 import upper.info.UpperInfoBean;
 import upper.info.UpperInfoDao;
-//import employeeManagement.AddEmployeeBean;
-import upper.info_employeeManagement.UpperInfoEmployeeManagementBean;
-import upper.info_employeeManagement.UpperInfoEmployeeManagementDao;
  
  
  
@@ -70,7 +67,6 @@ public class ChangePasswordServlet extends HttpServlet {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
- 
-        //response.sendRedirect("profile.jsp");
+
     }
 }

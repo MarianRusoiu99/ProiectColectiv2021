@@ -9,11 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
  
 import login.LoginServlet;
-import email.SendEmail;
 import passwordGenerator.PasswordGenerator;
-import profile.ProfileBean;
-import taskSuplim.TaskSuplimBean;
-import taskSuplim.TaskSuplimDao;
  
  
  
@@ -35,32 +31,18 @@ public class EchipaDao {
         List<EchipaBean> echipa = new ArrayList<EchipaBean>();
         
         
-        int result = 0;
+        
         int companie = 0;
         Integer id_team = 0;
         Integer id_emp = 0;
         String numeEchipa = null;
         String emailLider = null;
-        //String liderEmail = null;
-        String pozitieMembru = null;
         String numeMembru = null;
         String prenumeMembru = null;
         String jobMembru = null;
-        String disponibilitate = null;
         String emailMembru = null;
         String telefonMembru = null;
         
-        
-      
-       
-        
-        
-        PasswordGenerator passwordGenerator = new PasswordGenerator.PasswordGeneratorBuilder()
-                .useDigits(true)
-                .useLower(true)
-                .useUpper(true)
-                .build();
-        String password = passwordGenerator.generate(8);
         
         
         Class.forName("com.mysql.jdbc.Driver");
@@ -77,13 +59,10 @@ public class EchipaDao {
         
         
         try {
-            // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_QUERY);
-            //preparedStatement2.setInt(1, 1);
             preparedStatement2.setInt(1, LoginServlet.userID);
  
             System.out.println(preparedStatement2);
-            // Step 3: Execute the query or update query
             
             ResultSet result1 = preparedStatement2.executeQuery();
             if (result1.next()) {
@@ -98,21 +77,20 @@ public class EchipaDao {
         
         
         try {
-            // Step 2:Create a statement using connection object
+        	
             PreparedStatement preparedStatement2 = connection.prepareStatement(SELECT_TEAMid);
-            //preparedStatement2.setInt(1, 1);
+
             preparedStatement2.setInt(1, LoginServlet.userID);
             preparedStatement2.setInt(2, companie);
  
             System.out.println(preparedStatement2);
-            // Step 3: Execute the query or update query
+
             
             ResultSet result1 = preparedStatement2.executeQuery();
             if (result1.next()) {
                 id_team = result1.getInt(1);
-                System.out.println("ID_TEAM: " + id_team);
                 numeEchipa = result1.getString(2);
-                System.out.println("NUME ECHIPA: " + numeEchipa);
+               System.out.println("NUME ECHIPA: " + numeEchipa);
                 emailLider = result1.getString(3);
                 
                 
